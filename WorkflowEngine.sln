@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowEngine.UI", "Workfl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowEngine.Model", "WorkflowEngine.Model\WorkflowEngine.Model.csproj", "{CDC5BBF5-6132-446D-A30D-71EB7DB62A36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowEngine.Designer", "WorkflowEngine.Designer\WorkflowEngine.Designer.csproj", "{F276D444-3778-45F2-9877-7A2C694F59FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowEngine.Designer.Tests", "WorkflowEngine.Designer.Tests\WorkflowEngine.Designer.Tests.csproj", "{FE6148A4-9370-470D-AC78-790989B6F8EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +38,14 @@ Global
 		{CDC5BBF5-6132-446D-A30D-71EB7DB62A36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDC5BBF5-6132-446D-A30D-71EB7DB62A36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDC5BBF5-6132-446D-A30D-71EB7DB62A36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F276D444-3778-45F2-9877-7A2C694F59FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F276D444-3778-45F2-9877-7A2C694F59FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F276D444-3778-45F2-9877-7A2C694F59FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F276D444-3778-45F2-9877-7A2C694F59FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE6148A4-9370-470D-AC78-790989B6F8EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE6148A4-9370-470D-AC78-790989B6F8EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE6148A4-9370-470D-AC78-790989B6F8EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE6148A4-9370-470D-AC78-790989B6F8EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
