@@ -39,7 +39,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Execution\ExecutionResult.cs" />
+    <Compile Include="Execution\ExecutionSummary.cs" />
+    <Compile Include="Execution\WorkflowRunner.cs" />
+    <Compile Include="Execution\WorkflowValidationMessage.cs" />
+    <Compile Include="Execution\WorkflowValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\Login.cs" />
+    <Compile Include="Serialization\ISerializer.cs" />
+    <Compile Include="Serialization\XmlSerializerImplementation.cs" />
+    <Compile Include="Workflow.cs" />
+    <Compile Include="WorkflowBatch.cs" />
+    <Compile Include="WorkflowConstant.cs" />
+    <Compile Include="WorkflowExpectedResult.cs" />
+    <Compile Include="WorkflowParameter.cs" />
+    <Compile Include="WorkflowTask.cs" />
+    <Compile Include="WorkflowVariable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
