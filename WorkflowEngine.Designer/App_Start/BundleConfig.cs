@@ -8,21 +8,27 @@ namespace WorkflowEngine.Designer
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                "~/Scripts/vendor/angular/angular.js",
+                "~/Scripts/vendor/angular-animate/angular-animate.js",
+                "~/Scripts/vendor/angular-aria/angular-aria.js",
+                "~/Scripts/vendor/angular-material/angular-material.js",
+                "~/Scripts/vendor/angular-route/angular-route.js"));
 
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                "~/app/app.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+            bundles.Add(new ScriptBundle("~/bundles/services").Include(
+                "~/app/services/DesignerService.js",
+                "~/app/services/UnitOfWorkService.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/controllers").Include(
+                "~/app/controllers/HomeController.js",
+                "~/app/controllers/DesignerController.js",
+                "~/app/controllers/WorkflowController.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                "~/Scripts/vendor/angular-material/angular-material.css"));
         }
     }
 }

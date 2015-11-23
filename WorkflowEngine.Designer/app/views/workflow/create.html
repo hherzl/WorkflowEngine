@@ -1,0 +1,18 @@
+﻿<h2>Create Workflow</h2>
+
+<div>
+    <label for="workflowName">Name</label>
+    <input id="workflowName" name="workflowName" type="text" />
+</div>
+
+
+<button type="button" ng-click="addWorkflowTask()">Add Workflow Task</button>
+
+<div ng-show="addingWorkflowTask">
+    <div>
+        <div>
+            <label for="workflowTaskName">Name</label>
+            <input id="workflowTaskName" name="workflowTaskName" type="text" />
+        </div>
+    </div>
+</div>
