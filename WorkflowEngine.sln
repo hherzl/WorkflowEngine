@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowEngine", "WorkflowE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowEngine.UI", "WorkflowEngine.UI\WorkflowEngine.UI.csproj", "{899D3231-3E82-4964-A884-3FDD737380E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowEngine.Model", "WorkflowEngine.Model\WorkflowEngine.Model.csproj", "{CDC5BBF5-6132-446D-A30D-71EB7DB62A36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{899D3231-3E82-4964-A884-3FDD737380E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{899D3231-3E82-4964-A884-3FDD737380E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{899D3231-3E82-4964-A884-3FDD737380E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDC5BBF5-6132-446D-A30D-71EB7DB62A36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC5BBF5-6132-446D-A30D-71EB7DB62A36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC5BBF5-6132-446D-A30D-71EB7DB62A36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDC5BBF5-6132-446D-A30D-71EB7DB62A36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
