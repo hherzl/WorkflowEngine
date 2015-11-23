@@ -13,5 +13,6 @@ namespace WorkflowEngine.UI
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }

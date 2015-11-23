@@ -1,8 +1,8 @@
 ﻿<Application x:Class="WorkflowEngine.UI.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="MainWindow.xaml">
+             xmlns:local="clr-namespace:WorkflowEngine.UI.ViewModels">
     <Application.Resources>
-         
+        <local:LayoutViewModel x:Key="LayoutVM"/>
     </Application.Resources>
 </Application>
