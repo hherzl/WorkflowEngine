@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ExecutionSummary xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ExecutionDateTime>2015-11-23T11:15:49.2973711-06:00</ExecutionDateTime>
+  <Results>
+    <ExecutionResult>
+      <WorkflowName>Register customer</WorkflowName>
+      <ExecutedTasks>
+        <string>Add customer's data</string>
+      </ExecutedTasks>
+      <Succeeded>true</Succeeded>
+      <Failed>false</Failed>
+      <KnownIssue>false</KnownIssue>
+    </ExecutionResult>
+  </Results>
+  <ExecutedCount>1</ExecutedCount>
+  <SuccessCount>1</SuccessCount>
+  <FailedCount>0</FailedCount>
+  <KnownIssueCount>0</KnownIssueCount>
+</ExecutionSummary>

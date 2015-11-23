@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-16"?>
+<WorkflowBatch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Constants>
+    <WorkflowConstant>
+      <Name>CountryName</Name>
+      <Value>UK</Value>
+    </WorkflowConstant>
+  </Constants>
+  <Variables />
+  <Workflows>
+    <Workflow>
+      <Name>Register customer</Name>
+      <Description>Register new customer</Description>
+      <Tasks>
+        <WorkflowTask>
+          <Name>Add customer's data</Name>
+          <Description>Add information for customer's fields</Description>
+          <Parameters>
+            <WorkflowParameter>
+              <Key>CompanyName</Key>
+              <Value>Acme</Value>
+            </WorkflowParameter>
+            <WorkflowParameter>
+              <Key>ContactName</Key>
+              <Value>John Doe</Value>
+            </WorkflowParameter>
+            <WorkflowParameter>
+              <Key>ContactTitle</Key>
+              <Value>Mr.</Value>
+            </WorkflowParameter>
+            <WorkflowParameter>
+              <Key>Country</Key>
+              <Constant>CountryName</Constant>
+            </WorkflowParameter>
+          </Parameters>
+        </WorkflowTask>
+      </Tasks>
+      <ExpectedResults />
+    </Workflow>
+  </Workflows>
+</WorkflowBatch>

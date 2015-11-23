@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowEngine.Designer", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowEngine.Designer.Tests", "WorkflowEngine.Designer.Tests\WorkflowEngine.Designer.Tests.csproj", "{FE6148A4-9370-470D-AC78-790989B6F8EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowEngine.Tests", "WorkflowEngine.Tests\WorkflowEngine.Tests.csproj", "{22E615DA-1225-48E5-9ED0-B1D43972EE4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{FE6148A4-9370-470D-AC78-790989B6F8EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE6148A4-9370-470D-AC78-790989B6F8EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE6148A4-9370-470D-AC78-790989B6F8EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22E615DA-1225-48E5-9ED0-B1D43972EE4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22E615DA-1225-48E5-9ED0-B1D43972EE4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22E615DA-1225-48E5-9ED0-B1D43972EE4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22E615DA-1225-48E5-9ED0-B1D43972EE4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
