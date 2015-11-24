@@ -3,9 +3,9 @@
 
     angular.module("designer").controller("HomeController", HomeController);
 
-    HomeController.$inject = ["$log", "$scope"];
+    HomeController.$inject = ["$log"];
 
-    function HomeController($log, $scope) {
-
+    function HomeController($log) {
+        var vm = this;
     };
 })();

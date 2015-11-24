@@ -3,12 +3,14 @@
 
     angular.module("designer").controller("DesignerController", DesignerController);
 
-    DesignerController.$inject = ["$log", "$scope", "$location"];
+    DesignerController.$inject = ["$log", "$location"];
 
-    function DesignerController($log, $scope, $location) {
-        $scope.workflows = [];
+    function DesignerController($log, $location) {
+        var vm = this;
 
-        $scope.addWorkflow = function () {
+        vm.workflows = [];
+
+        vm.addWorkflow = function () {
             $location.path("/workflow/create");
         };
     };

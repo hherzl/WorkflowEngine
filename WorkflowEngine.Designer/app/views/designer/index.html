@@ -1,10 +1,10 @@
 ﻿<h2>Designer</h2>
 
-<button type="button" ng-click="addWorkflow()">Add</button>
+<button type="button" ng-click="vm.addWorkflow()">Add</button>
 
 <table>
     <tr ng-repeat="workflow in workflows">
-        <td>{{ workflow.name }}</td>
-        <td>{{ workflow.name }}</td>
+        <td>{{ vm.workflow.name }}</td>
+        <td>{{ vm.workflow.name }}</td>
     </tr>
 </table>

@@ -3,13 +3,15 @@
 
     angular.module("designer").controller("WorkflowCreateController", WorkflowCreateController);
 
-    WorkflowCreateController.$inject = ["$log", "$scope", "$location", "$mdDialog"];
+    WorkflowCreateController.$inject = ["$log", "$location", "$mdDialog"];
 
-    function WorkflowCreateController($log, $scope, $location, $mdDialog) {
-        $scope.addingWorkflowTask = false;
+    function WorkflowCreateController($log, $location, $mdDialog) {
+        var vm = this;
 
-        $scope.addWorkflowTask = function () {
-            $scope.addingWorkflowTask = true;
+        vm.addingWorkflowTask = false;
+
+        vm.addWorkflowTask = function () {
+            vm.addingWorkflowTask = true;
         };
     };
 })();
