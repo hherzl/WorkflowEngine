@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WorkflowEngine.Model
+﻿namespace WorkflowEngine.Model
 {
     public class WorkflowExpectedResult
     {
@@ -12,5 +6,7 @@ namespace WorkflowEngine.Model
         {
 
         }
+
+        public WorkflowTaskStatus Status { get; set; }
     }
 }

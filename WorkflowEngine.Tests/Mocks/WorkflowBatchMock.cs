@@ -32,10 +32,10 @@ namespace WorkflowEngine.Tests.Mocks
                             Description = "Add information for customer's fields",
                             Parameters = new List<WorkflowParameter>()
                             {
-                                new WorkflowParameter { Key = "CompanyName", Value = "Acme" },
-                                new WorkflowParameter { Key = "ContactName", Value = "John Doe" },
-                                new WorkflowParameter { Key = "ContactTitle", Value = "Mr." },
-                                new WorkflowParameter { Key = "Country", Constant = "CountryName" },
+                                new WorkflowParameter { Name = "CompanyName", Value = "Acme" },
+                                new WorkflowParameter { Name = "ContactName", Value = "John Doe" },
+                                new WorkflowParameter { Name = "ContactTitle", Value = "Mr." },
+                                new WorkflowParameter { Name = "Country", Constant = "CountryName" },
                             }
                         }
                     }
