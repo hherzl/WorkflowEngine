@@ -36,7 +36,9 @@ namespace WorkflowEngine.Tests
         [TestMethod]
         public void RunBasicWorkflow()
         {
-            var runner = new WorkflowRunner(WorkflowBatchMock.GetRegisterCustomerWorkflowBatch());
+            var batch = WorkflowBatchMock.GetRegisterCustomerWorkflowBatch();
+
+            var runner = new WorkflowRunner(batch);
 
             var executionSummary = runner.Execute();
 

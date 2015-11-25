@@ -10,7 +10,9 @@ namespace WorkflowEngine.Model
 
         }
 
-        public String Description { get; set; }
+        public String FileName { get; set; }
+
+        public String Name { get; set; }
 
         private List<WorkflowConstant> m_constants;
         private List<WorkflowVariable> m_variables;

@@ -15,6 +15,10 @@ namespace WorkflowEngine.Model
 
         public String Value { get; set; }
 
+        public String PresetValue { get; set; }
+
+        public String Variable { get; set; }
+
         public String Constant { get; set; }
     }
 }

@@ -15,6 +15,6 @@ namespace WorkflowEngine.Model
 
         public String Value { get; set; }
 
-        public String ReferencedConstant { get; set; }
+        public String ConstantName { get; set; }
     }
 }

@@ -13,7 +13,20 @@ namespace WorkflowEngine.Model.Execution
 
         public DateTime ExecutionDateTime { get; set; }
 
+        private List<WorkflowValidationMessage> m_validationMessages;
         private List<ExecutionResult> m_results;
+
+        public List<WorkflowValidationMessage> ValidationMessages
+        {
+            get
+            {
+                return m_validationMessages ?? (m_validationMessages = new List<WorkflowValidationMessage>());
+            }
+            set
+            {
+                m_validationMessages = value;
+            }
+        }
 
         public List<ExecutionResult> Results
         {

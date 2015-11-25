@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-16"?>
 <ExecutionSummary xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ExecutionDateTime>2015-11-23T11:15:49.2973711-06:00</ExecutionDateTime>
+  <ExecutionDateTime>2015-11-25T17:12:53.1254013-06:00</ExecutionDateTime>
+  <ValidationMessages>
+    <WorkflowValidationMessage>
+      <Type>Error</Type>
+      <WorkflowName>Register customer</WorkflowName>
+      <Message>There is not a definition for constant with name: 'CountryName123'</Message>
+    </WorkflowValidationMessage>
+    <WorkflowValidationMessage>
+      <Type>Warning</Type>
+      <WorkflowName>Register customer</WorkflowName>
+      <Message>Constant with name: 'CountryName' doesn't have any reference in tasks' parameters</Message>
+    </WorkflowValidationMessage>
+    <WorkflowValidationMessage>
+      <Type>Warning</Type>
+      <WorkflowName>Register customer</WorkflowName>
+      <Message>Constant with name: 'Phone' doesn't have any reference in tasks' parameters</Message>
+    </WorkflowValidationMessage>
+  </ValidationMessages>
   <Results>
     <ExecutionResult>
       <WorkflowName>Register customer</WorkflowName>
