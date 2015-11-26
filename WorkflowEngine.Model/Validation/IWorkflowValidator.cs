@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WorkflowEngine.Model.Execution
+namespace WorkflowEngine.Model.Validation
 {
     public interface IWorkflowValidator
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WorkflowEngine.Model.Execution
+namespace WorkflowEngine.Model.Validation
 {
     public class WorkflowValidationMessage
     {
@@ -9,7 +9,7 @@ namespace WorkflowEngine.Model.Execution
 
         }
 
-        public MessageType Type { get; set; }
+        public WorkflowValidationMessageType MessageType { get; set; }
 
         public String WorkflowBatchName { get; set; }
 

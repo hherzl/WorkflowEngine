@@ -11,8 +11,7 @@ namespace WorkflowEngine.Tests.Mocks
 
             workflowBatch.Constants = new List<WorkflowConstant>()
             {
-                new WorkflowConstant { Name = "CountryName", Value = "UK" },
-                new WorkflowConstant { Name = "Phone", Value = "12345" }
+                new WorkflowConstant { Name = "CountryName", Value = "UK" }
             };
 
             workflowBatch.Workflows = new List<Workflow>()
@@ -32,7 +31,7 @@ namespace WorkflowEngine.Tests.Mocks
                                 new WorkflowParameter { Name = "CompanyName", Value = "Acme" },
                                 new WorkflowParameter { Name = "ContactName", Value = "John Doe" },
                                 new WorkflowParameter { Name = "ContactTitle", Value = "Mr." },
-                                new WorkflowParameter { Name = "Country", Constant = "CountryName123" },
+                                new WorkflowParameter { Name = "Country", Constant = "CountryName" },
                             }
                         }
                     }

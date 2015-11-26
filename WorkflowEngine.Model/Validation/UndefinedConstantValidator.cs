@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace WorkflowEngine.Model.Execution
+namespace WorkflowEngine.Model.Validation
 {
     public class UndefinedConstantValidator : IWorkflowValidator
     {
@@ -20,7 +20,7 @@ namespace WorkflowEngine.Model.Execution
                             {
                                 yield return new WorkflowValidationMessage
                                 {
-                                    Type = MessageType.Error,
+                                    MessageType = WorkflowValidationMessageType.Error,
                                     WorkflowName = workflow.Name,
                                     Message = String.Format("There is not a definition for constant with name: '{0}'", parameter.Constant)
                                 };

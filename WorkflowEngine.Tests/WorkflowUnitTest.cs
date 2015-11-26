@@ -18,6 +18,11 @@ namespace WorkflowEngine.Tests
             }
         }
 
+        String GetExecutionResultsPath(String fileName)
+        {
+            return String.Format(@"{0}\ExecutionResults\{1}", Environment.CurrentDirectory.Replace(@"\bin\Debug", String.Empty), fileName);
+        }
+
         [TestMethod]
         public void SerializeRegisterCustomerWorkflow()
         {
@@ -48,7 +53,7 @@ namespace WorkflowEngine.Tests
 
             Console.WriteLine(xml);
 
-            File.WriteAllText(String.Format(@"{0}\ExecutionResults\RegisterCustomer.Results.xml", Environment.CurrentDirectory.Replace(@"\bin\Debug", String.Empty)), xml);
+            File.WriteAllText(GetExecutionResultsPath(@"RegisterCustomer.Results.xml"), xml);
         }
     }
 }

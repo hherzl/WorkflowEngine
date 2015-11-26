@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WorkflowEngine.Model.Validation;
 
 namespace WorkflowEngine.Model.Execution
 {
@@ -18,7 +19,7 @@ namespace WorkflowEngine.Model.Execution
 
         public WorkflowBatch WorkflowBatch { get; protected set; }
 
-        public IEnumerable<IWorkflowValidator> Validators { get; set; }
+        public List<IWorkflowValidator> Validators { get; set; }
 
         public ExecutionSummary Execute()
         {

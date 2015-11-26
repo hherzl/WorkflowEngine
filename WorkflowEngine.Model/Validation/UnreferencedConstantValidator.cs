@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace WorkflowEngine.Model.Execution
+namespace WorkflowEngine.Model.Validation
 {
     public class UnreferencedConstantValidator : IWorkflowValidator
     {
@@ -21,7 +21,7 @@ namespace WorkflowEngine.Model.Execution
                     {
                         yield return new WorkflowValidationMessage
                         {
-                            Type = MessageType.Warning,
+                            MessageType = WorkflowValidationMessageType.Warning,
                             WorkflowBatchName = workflowBatch.Name,
                             Message = String.Format("Constant in variable with name: '{0}' doesn't have any reference in tasks' parameters", constant.Name)
                         };
@@ -39,7 +39,7 @@ namespace WorkflowEngine.Model.Execution
                         {
                             yield return new WorkflowValidationMessage
                             {
-                                Type = MessageType.Warning,
+                                MessageType = WorkflowValidationMessageType.Warning,
                                 WorkflowName = workflow.Name,
                                 Message = String.Format("Constant with name: '{0}' doesn't have any reference in tasks' parameters", constant.Name)
                             };

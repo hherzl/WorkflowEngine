@@ -41,12 +41,12 @@
   <ItemGroup>
     <Compile Include="Execution\ExecutionResult.cs" />
     <Compile Include="Execution\ExecutionSummary.cs" />
-    <Compile Include="Execution\IWorkflowValidator.cs" />
-    <Compile Include="Execution\MessageType.cs" />
-    <Compile Include="Execution\UnreferencedConstantValidator.cs" />
+    <Compile Include="Validation\IWorkflowValidator.cs" />
+    <Compile Include="Validation\WorkflowValidationMessageType.cs" />
+    <Compile Include="Validation\UnreferencedConstantValidator.cs" />
     <Compile Include="Execution\WorkflowRunner.cs" />
-    <Compile Include="Execution\WorkflowValidationMessage.cs" />
-    <Compile Include="Execution\UndefinedConstantValidator.cs" />
+    <Compile Include="Validation\WorkflowValidationMessage.cs" />
+    <Compile Include="Validation\UndefinedConstantValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\Login.cs" />
     <Compile Include="Serialization\ISerializer.cs" />
