@@ -20,6 +20,16 @@
                 controller: "DesignerController",
                 controllerAs: "vm"
             })
+            .when("/workflowBatch", {
+                templateUrl: base + "workflowBatch/index.html",
+                controller: "WorkflowBatchController",
+                controllerAs: "vm"
+            })
+            .when("/workflowTask", {
+                templateUrl: base + "workflowTask/index.html",
+                controller: "WorkflowTaskController",
+                controllerAs: "vm"
+            })
             .when("/workflow/create", {
                 templateUrl: base + "workflow/create.html",
                 controller: "WorkflowCreateController",

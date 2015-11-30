@@ -2,8 +2,8 @@
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WorkflowEngine.Model.Execution;
+using WorkflowEngine.Model.Mocking;
 using WorkflowEngine.Model.Serialization;
-using WorkflowEngine.Tests.Mocks;
 
 namespace WorkflowEngine.Tests
 {
@@ -26,7 +26,7 @@ namespace WorkflowEngine.Tests
         [TestMethod]
         public void SerializeRegisterCustomerWorkflow()
         {
-            var workflowBatch = WorkflowBatchMock.GetRegisterCustomerWorkflowBatch();
+            var workflowBatch = WorkflowEngineMock.GetRegisterCustomerWorkflowBatch();
 
             var serializer = new XmlSerializerImplementation() as ISerializer;
 
@@ -41,7 +41,7 @@ namespace WorkflowEngine.Tests
         [TestMethod]
         public void RunBasicWorkflow()
         {
-            var batch = WorkflowBatchMock.GetRegisterCustomerWorkflowBatch();
+            var batch = WorkflowEngineMock.GetRegisterCustomerWorkflowBatch();
 
             var runner = new WorkflowRunner(batch);
 

@@ -1,10 +1,19 @@
 ﻿using System.Collections.Generic;
-using WorkflowEngine.Model;
 
-namespace WorkflowEngine.Tests.Mocks
+namespace WorkflowEngine.Model.Mocking
 {
-    public static class WorkflowBatchMock
+    public static class WorkflowEngineMock
     {
+        public static IEnumerable<WorkflowTask> GetTasks()
+        {
+            return new List<WorkflowTask>()
+            {
+                new WorkflowTask { Name = "Add customer's data", Description = "Add information for customer's fields" },
+                new WorkflowTask { Name = "Create order", Description = "Create order for customer" },
+                new WorkflowTask { Name = "Request recent orders", Description = "Request a list of recent orders" }
+            };
+        }
+
         public static WorkflowBatch GetRegisterCustomerWorkflowBatch()
         {
             var workflowBatch = new WorkflowBatch();

@@ -5,14 +5,20 @@
     <input id="workflowName" name="workflowName" type="text" />
 </div>
 
+<div>
+    <label for="workflowDescription">Description</label>
+    <input id="workflowDescription" name="workflowDescription" type="text" />
+</div>
 
-<button type="button" ng-click="vm.addWorkflowTask()">Add Workflow Task</button>
+<button type="button" ng-click="vm.saveWorkflow()">Save</button>
 
-<div ng-show="vm.addingWorkflowTask">
+<!--<button type="button" ng-click="vm.addWorkflowTask()">Add Workflow Task</button>-->
+
+<!--<div ng-show="vm.addingWorkflowTask">
     <div>
         <div>
             <label for="workflowTaskName">Name</label>
             <input id="workflowTaskName" name="workflowTaskName" type="text" />
         </div>
     </div>
-</div>
+</div>-->

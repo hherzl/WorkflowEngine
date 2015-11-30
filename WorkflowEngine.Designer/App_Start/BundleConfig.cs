@@ -20,12 +20,17 @@ namespace WorkflowEngine.Designer
 
             bundles.Add(new ScriptBundle("~/bundles/services").Include(
                 "~/app/services/DesignerService.js",
+                "~/app/services/WorkflowBatchService.js",
+                "~/app/services/WorkflowService.js",
+                "~/app/services/WorkflowTaskService.js",
                 "~/app/services/UnitOfWorkService.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/controllers").Include(
                 "~/app/controllers/HomeController.js",
                 "~/app/controllers/DesignerController.js",
-                "~/app/controllers/WorkflowController.js"));
+                "~/app/controllers/WorkflowBatchController.js",
+                "~/app/controllers/WorkflowController.js",
+                "~/app/controllers/WorkflowTaskController.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Scripts/vendor/angular-material/angular-material.css"));

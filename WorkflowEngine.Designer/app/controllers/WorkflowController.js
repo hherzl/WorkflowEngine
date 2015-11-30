@@ -8,10 +8,8 @@
     function WorkflowCreateController($log, $location, $mdDialog) {
         var vm = this;
 
-        vm.addingWorkflowTask = false;
-
-        vm.addWorkflowTask = function () {
-            vm.addingWorkflowTask = true;
+        vm.saveWorkflow = function () {
+            
         };
     };
 })();
