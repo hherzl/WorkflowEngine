@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 
 namespace WorkflowEngine.Designer.Models
@@ -19,6 +20,16 @@ namespace WorkflowEngine.Designer.Models
         public IEnumerable<TEntity> GetAll()
         {
             return DbSet;
+        }
+
+        public TEntity Get(TEntity entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Add(TEntity entity)
+        {
+            DbSet.Add(entity);
         }
     }
 }

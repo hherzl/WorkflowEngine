@@ -8,6 +8,7 @@ using WorkflowEngine.Designer.Models;
 using WorkflowEngine.Designer.Responses;
 using WorkflowEngine.Designer.Services;
 using WorkflowEngine.Designer.ViewModels;
+using WorkflowEngine.Model;
 
 namespace WorkflowEngine.Designer.Controllers
 {
@@ -67,8 +68,31 @@ namespace WorkflowEngine.Designer.Controllers
         }
 
         // POST: api/Workflow
-        public void Post([FromBody]string value)
+        public async Task <HttpResponseMessage> Post([FromBody]WorkflowViewModel value)
         {
+            var response = new WorkflowSingleResponse();
+
+            try
+            {
+                var entity = new Workflow
+                {
+                    Name = value.Name,
+                    Description = value.Description
+                };
+
+                Uow.WorkflowRepository.Add(entity);
+
+                await Uow.CommitChangesAsync();
+
+                response.Model = new WorkflowViewModel(entity);
+            }
+            catch (Exception ex)
+            {
+                response.DidError = true;
+                response.ErrorMessage = ex.Message;
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
         // PUT: api/Workflow/5

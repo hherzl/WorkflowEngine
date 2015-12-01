@@ -188,15 +188,18 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IRepository.cs" />
+    <Compile Include="Models\IUow.cs" />
     <Compile Include="Models\IWorkflowBatchRepository.cs" />
     <Compile Include="Models\IWorkflowManagerUow.cs" />
     <Compile Include="Models\IWorkflowRepository.cs" />
     <Compile Include="Models\IWorkflowTaskRepository.cs" />
     <Compile Include="Models\Repository.cs" />
+    <Compile Include="Models\Uow.cs" />
     <Compile Include="Models\WorkflowBatchRepository.cs" />
     <Compile Include="Models\WorkflowEngineDbContext.cs" />
     <Compile Include="Models\WorkflowEngineDbInitializer.cs" />
     <Compile Include="Models\WorkflowManagerUow.cs" />
+    <Compile Include="Models\WorkflowMap.cs" />
     <Compile Include="Models\WorkflowParameterMap.cs" />
     <Compile Include="Models\WorkflowRepository.cs" />
     <Compile Include="Models\WorkflowTaskMap.cs" />
@@ -207,6 +210,7 @@
     <Compile Include="Responses\ISingleViewModelResponse.cs" />
     <Compile Include="Responses\IViewModelResponse.cs" />
     <Compile Include="Responses\WorkflowComposedResponse.cs" />
+    <Compile Include="Responses\WorkflowSingleResponse.cs" />
     <Compile Include="Responses\WorkflowTaskComposedResponse.cs" />
     <Compile Include="Responses\ViewModelResponse.cs" />
     <Compile Include="Responses\WorkflowBatchComposedResponse.cs" />

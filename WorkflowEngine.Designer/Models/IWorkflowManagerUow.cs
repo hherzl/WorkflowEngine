@@ -1,6 +1,6 @@
 ﻿namespace WorkflowEngine.Designer.Models
 {
-    public interface IWorkflowManagerUow
+    public interface IWorkflowManagerUow : IUow
     {
         IWorkflowBatchRepository WorkflowBatchRepository { get; }
 

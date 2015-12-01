@@ -23,7 +23,7 @@ namespace WorkflowEngine.Designer
                 "~/app/services/WorkflowBatchService.js",
                 "~/app/services/WorkflowService.js",
                 "~/app/services/WorkflowTaskService.js",
-                "~/app/services/UnitOfWorkService.js"));
+                "~/app/services/UnitOfWork.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/controllers").Include(
                 "~/app/controllers/HomeController.js",

@@ -11,7 +11,7 @@
         var url = "/api/Workflow";
 
         svc.post = function (model) {
-            return $http.post("", model);
+            return $http.post(url, model);
         };
     };
 })();

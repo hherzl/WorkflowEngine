@@ -2,12 +2,12 @@
 
 <div>
     <label for="workflowName">Name</label>
-    <input id="workflowName" name="workflowName" type="text" />
+    <input id="workflowName" name="workflowName" type="text" ng-model="vm.workflowName" />
 </div>
 
 <div>
     <label for="workflowDescription">Description</label>
-    <input id="workflowDescription" name="workflowDescription" type="text" />
+    <input id="workflowDescription" name="workflowDescription" type="text" ng-model="vm.workflowDescription" />
 </div>
 
 <button type="button" ng-click="vm.saveWorkflow()">Save</button>

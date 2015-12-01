@@ -1,18 +1,19 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace WorkflowEngine.Designer.Models
 {
-    public class WorkflowManagerUow : IWorkflowManagerUow
+    public class WorkflowManagerUow : Uow, IWorkflowManagerUow
     {
-        private DbContext m_dbContext;
-
         private IWorkflowBatchRepository m_workflowBatchRepository;
         private IWorkflowRepository m_workflowRepository;
         private IWorkflowTaskRepository m_workflowTaskRepository;
 
         public WorkflowManagerUow(DbContext dbContext)
+            : base(dbContext)
         {
-            m_dbContext = dbContext;
+
         }
 
         public IWorkflowBatchRepository WorkflowBatchRepository
