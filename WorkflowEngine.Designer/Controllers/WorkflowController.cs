@@ -62,9 +62,26 @@ namespace WorkflowEngine.Designer.Controllers
         }
 
         // GET: api/Workflow/5
-        public string Get(int id)
+        public async Task<HttpResponseMessage> Get(Int32 id)
         {
-            return "value";
+            var response = new WorkflowSingleResponse();
+
+            try
+            {
+                var entity = await Task.Run(() =>
+                {
+                    return Uow.WorkflowRepository.Get(new Workflow { ID = id });
+                });
+
+                response.Model = new WorkflowViewModel(entity);
+            }
+            catch (Exception ex)
+            {
+                response.DidError = true;
+                response.ErrorMessage = ex.Message;
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
         // POST: api/Workflow
@@ -96,12 +113,35 @@ namespace WorkflowEngine.Designer.Controllers
         }
 
         // PUT: api/Workflow/5
-        public void Put(int id, [FromBody]string value)
+        public async Task<HttpResponseMessage> Put(Int32 id, [FromBody]WorkflowViewModel value)
         {
+            var response = new WorkflowSingleResponse();
+
+            try
+            {
+                var entity = await Task.Run(() =>
+                {
+                    return Uow.WorkflowRepository.Get(new Workflow { ID = id });
+                });
+
+                entity.Name = value.Name;
+                entity.Description = value.Description;
+
+                await Uow.CommitChangesAsync();
+
+                response.Model = new WorkflowViewModel(entity);
+            }
+            catch (Exception ex)
+            {
+                response.DidError = true;
+                response.ErrorMessage = ex.Message;
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
         // DELETE: api/Workflow/5
-        public void Delete(int id)
+        public void Delete(Int32 id)
         {
         }
     }

@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    angular.module("designer").service("WorkflowBatchService", WorkflowBatchService);
+    angular.module("designerApi").service("WorkflowBatchService", WorkflowBatchService);
 
     WorkflowBatchService.$inject = ["$log", "$http"];
 

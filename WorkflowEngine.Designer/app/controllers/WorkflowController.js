@@ -3,9 +3,9 @@
 
     angular.module("designer").controller("WorkflowCreateController", WorkflowCreateController);
 
-    WorkflowCreateController.$inject = ["$log", "$location", "UnitOfWork"];
+    WorkflowCreateController.$inject = ["$log", "$location", "toaster", "UnitOfWork"];
 
-    function WorkflowCreateController($log, $location, uow) {
+    function WorkflowCreateController($log, $location, toaster, uow) {
         var vm = this;
 
         vm.saveWorkflow = function () {
@@ -15,7 +15,11 @@
             };
 
             uow.workflowRepository.post(entity).then(function (result) {
-                
+                if (!result.data.didError) {
+                    toaster.pop("success", "toaster: Workflow was save successfully");
+
+                    $location.path("/workflowBatch");
+                }
             });
         };
     };

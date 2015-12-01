@@ -13,10 +13,12 @@ namespace WorkflowEngine.Designer
                 "~/Scripts/vendor/angular-animate/angular-animate.js",
                 "~/Scripts/vendor/angular-aria/angular-aria.js",
                 "~/Scripts/vendor/angular-material/angular-material.js",
-                "~/Scripts/vendor/angular-route/angular-route.js"));
+                "~/Scripts/vendor/angular-route/angular-route.js",
+                "~/Scripts/vendor/toaster/toaster.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                "~/app/app.js"));
+                "~/app/app.js",
+                "~/app/api.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/services").Include(
                 "~/app/services/DesignerService.js",
@@ -33,7 +35,8 @@ namespace WorkflowEngine.Designer
                 "~/app/controllers/WorkflowTaskController.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Scripts/vendor/angular-material/angular-material.css"));
+                "~/Scripts/vendor/angular-material/angular-material.css",
+                "~/Scripts/vendor/toaster/toaster.css"));
         }
     }
 }

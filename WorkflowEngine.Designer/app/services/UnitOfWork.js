@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    angular.module("designer").service("UnitOfWork", UnitOfWork);
+    angular.module("designerApi").service("UnitOfWork", UnitOfWork);
 
     UnitOfWork.$inject = ["DesignerService", "WorkflowService"];
 

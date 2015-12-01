@@ -1,3 +1,10 @@
 ﻿<h2>Workflow Batch</h2>
 
 <button type="button" ng-click="vm.addWorkflow()">Add Workflow</button>
+
+<table>
+    <tr ng-repeat="workflow in vm.workflowResult.model">
+        <td>{{ workflow.name }}</td>
+        <td>{{ workflow.description }}</td>
+    </tr>
+</table>

@@ -222,6 +222,7 @@
     <Compile Include="ViewModels\WorkflowViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\api.js" />
     <Content Include="app\app.js" />
     <Content Include="app\controllers\DesignerController.js" />
     <Content Include="app\controllers\HomeController.js" />

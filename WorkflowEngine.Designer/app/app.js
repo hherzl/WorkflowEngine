@@ -3,7 +3,9 @@
 
     angular.module("designer", [
         "ngMaterial",
-        "ngRoute"
+        "ngRoute",
+        "toaster",
+        "designerApi"
     ]);
 
     angular.module("designer").config(function ($routeProvider) {

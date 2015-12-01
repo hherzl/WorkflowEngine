@@ -4,10 +4,10 @@
     "dependencies": {
         "angular": "~1.4.8",
         "angular-material": "~0.11.4",
-        "angular-route": "~1.4.8"
+        "angular-route": "~1.4.8",
+        "toaster": "~0.4.16"
     },
     "devDependencies": { 
 
     }
 }
-
