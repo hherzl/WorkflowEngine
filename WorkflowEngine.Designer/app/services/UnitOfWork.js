@@ -3,12 +3,12 @@
 
     angular.module("designerApi").service("UnitOfWork", UnitOfWork);
 
-    UnitOfWork.$inject = ["DesignerService", "WorkflowService"];
+    UnitOfWork.$inject = ["WorkflowBatchService", "WorkflowService"];
 
-    function UnitOfWork(designerSvc, workflowSvc) {
+    function UnitOfWork(workflowBatchSvc, workflowSvc) {
         var svc = this;
 
-        svc.designerRepository = designerSvc;
+        svc.workflowBatchRepository = workflowBatchSvc;
 
         svc.workflowRepository = workflowSvc;
     };

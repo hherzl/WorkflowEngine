@@ -8,6 +8,7 @@ using WorkflowEngine.Designer.Models;
 using WorkflowEngine.Designer.Responses;
 using WorkflowEngine.Designer.Services;
 using WorkflowEngine.Designer.ViewModels;
+using WorkflowEngine.Model;
 
 namespace WorkflowEngine.Designer.Controllers
 {
@@ -44,7 +45,9 @@ namespace WorkflowEngine.Designer.Controllers
                         .GetAll()
                         .Select(item => new WorkflowBatchViewModel
                         {
-                            Name = item.Name
+                            ID = item.ID,
+                            Name = item.Name,
+                            Description = item.Description
                         })
                         .ToList();
                 });
@@ -59,24 +62,109 @@ namespace WorkflowEngine.Designer.Controllers
         }
 
         // GET: api/WorkflowBatch/5
-        public string Get(int id)
+        public async Task<HttpResponseMessage> Get(Int32 id)
         {
-            return "value";
+            var response = new WorkflowBatchSingleResponse();
+
+            try
+            {
+                var entity = await Task.Run(() =>
+                {
+                    return Uow.WorkflowBatchRepository.Get(new WorkflowBatch { ID = id });
+                });
+
+                response.Model = new WorkflowBatchViewModel(entity);
+            }
+            catch (Exception ex)
+            {
+                response.DidError = true;
+                response.ErrorMessage = ex.ToString();
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
         // POST: api/WorkflowBatch
-        public void Post([FromBody]string value)
+        public async Task <HttpResponseMessage> Post([FromBody]WorkflowBatchViewModel value)
         {
+            var response = new WorkflowBatchSingleResponse();
+
+            try
+            {
+                var entity = new WorkflowBatch
+                {
+                    Name = value.Name,
+                    Description = value.Description
+                };
+
+                Uow.WorkflowBatchRepository.Add(entity);
+
+                await Uow.CommitChangesAsync();
+
+                response.Model = new WorkflowBatchViewModel(entity);
+            }
+            catch (Exception ex)
+            {
+                response.DidError = true;
+                response.ErrorMessage = ex.Message;
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
         // PUT: api/WorkflowBatch/5
-        public void Put(int id, [FromBody]string value)
+        public async Task<HttpResponseMessage> Put(Int32 id, [FromBody]WorkflowBatchViewModel value)
         {
+            var response = new WorkflowBatchSingleResponse();
+
+            try
+            {
+                var entity = await Task.Run(() =>
+                {
+                    return Uow.WorkflowBatchRepository.Get(new WorkflowBatch { ID = id });
+                });
+
+                entity.Name = value.Name;
+                entity.Description = value.Description;
+
+                await Uow.CommitChangesAsync();
+
+                response.Model = new WorkflowBatchViewModel(entity);
+            }
+            catch (Exception ex)
+            {
+                response.DidError = true;
+                response.ErrorMessage = ex.ToString();
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
         // DELETE: api/WorkflowBatch/5
-        public void Delete(int id)
+        public async Task<HttpResponseMessage> Delete(Int32 id)
         {
+            var response = new WorkflowBatchSingleResponse();
+
+            try
+            {
+                var entity = await Task.Run(() =>
+                {
+                    return Uow.WorkflowBatchRepository.Get(new WorkflowBatch { ID = id });
+                });
+
+                Uow.WorkflowBatchRepository.Delete(entity);
+
+                await Uow.CommitChangesAsync();
+
+                response.Model = new WorkflowBatchViewModel(entity);
+            }
+            catch (Exception ex)
+            {
+                response.DidError = true;
+                response.ErrorMessage = ex.ToString();
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
     }
 }

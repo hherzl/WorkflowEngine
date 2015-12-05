@@ -9,5 +9,9 @@ namespace WorkflowEngine.Designer.Models
         TEntity Get(TEntity entity);
 
         void Add(TEntity entity);
+
+        void Update(TEntity entity);
+
+        void Delete(TEntity entity);
     }
 }

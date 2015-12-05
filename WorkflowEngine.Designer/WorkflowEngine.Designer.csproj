@@ -195,6 +195,7 @@
     <Compile Include="Models\IWorkflowTaskRepository.cs" />
     <Compile Include="Models\Repository.cs" />
     <Compile Include="Models\Uow.cs" />
+    <Compile Include="Models\WorkflowBatchMap.cs" />
     <Compile Include="Models\WorkflowBatchRepository.cs" />
     <Compile Include="Models\WorkflowEngineDbContext.cs" />
     <Compile Include="Models\WorkflowEngineDbInitializer.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="Responses\IComposedViewModelResponse.cs" />
     <Compile Include="Responses\ISingleViewModelResponse.cs" />
     <Compile Include="Responses\IViewModelResponse.cs" />
+    <Compile Include="Responses\WorkflowBatchSingleResponse.cs" />
     <Compile Include="Responses\WorkflowComposedResponse.cs" />
     <Compile Include="Responses\WorkflowSingleResponse.cs" />
     <Compile Include="Responses\WorkflowTaskComposedResponse.cs" />
@@ -236,6 +238,8 @@
     <Content Include="app\services\WorkflowBatchService.js" />
     <Content Include="app\views\designer\index.html" />
     <Content Include="app\views\home\index.html" />
+    <Content Include="app\views\workflowBatch\create.html" />
+    <Content Include="app\views\workflowBatch\details.html" />
     <Content Include="app\views\workflowTask\index.html" />
     <Content Include="app\views\workflowBatch\index.html" />
     <Content Include="app\views\workflow\create.html" />

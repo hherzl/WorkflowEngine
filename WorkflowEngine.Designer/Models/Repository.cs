@@ -17,19 +17,29 @@ namespace WorkflowEngine.Designer.Models
 
         protected DbSet<TEntity> DbSet { get; set; }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return DbSet;
         }
 
-        public TEntity Get(TEntity entity)
+        public virtual TEntity Get(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Add(TEntity entity)
+        public virtual void Add(TEntity entity)
         {
             DbSet.Add(entity);
+        }
+
+        public virtual void Update(TEntity entity)
+        {
+
+        }
+
+        public virtual void Delete(TEntity entity)
+        {
+            DbSet.Remove(entity);
         }
     }
 }

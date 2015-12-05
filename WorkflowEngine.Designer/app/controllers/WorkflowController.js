@@ -16,7 +16,7 @@
 
             uow.workflowRepository.post(entity).then(function (result) {
                 if (!result.data.didError) {
-                    toaster.pop("success", "toaster: Workflow was save successfully");
+                    toaster.pop("success", "Workflow was saved successfully");
 
                     $location.path("/workflowBatch");
                 }
