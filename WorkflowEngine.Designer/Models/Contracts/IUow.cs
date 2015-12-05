@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace WorkflowEngine.Designer.Models
+namespace WorkflowEngine.Designer.Models.Contracts
 {
     public interface IUow
     {

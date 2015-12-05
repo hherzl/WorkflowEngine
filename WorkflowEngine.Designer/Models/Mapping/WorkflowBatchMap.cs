@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using WorkflowEngine.Model;
 
-namespace WorkflowEngine.Designer.Models
+namespace WorkflowEngine.Designer.Models.Mapping
 {
     public class WorkflowBatchMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<WorkflowBatch>
     {

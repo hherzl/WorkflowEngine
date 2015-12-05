@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using WorkflowEngine.Designer.Models;
+using WorkflowEngine.Designer.Models.Contracts;
 using WorkflowEngine.Designer.Responses;
 using WorkflowEngine.Designer.Services;
 using WorkflowEngine.Designer.ViewModels;

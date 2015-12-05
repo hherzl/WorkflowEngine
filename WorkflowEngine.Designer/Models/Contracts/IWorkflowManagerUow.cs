@@ -1,4 +1,4 @@
-﻿namespace WorkflowEngine.Designer.Models
+﻿namespace WorkflowEngine.Designer.Models.Contracts
 {
     public interface IWorkflowManagerUow : IUow
     {

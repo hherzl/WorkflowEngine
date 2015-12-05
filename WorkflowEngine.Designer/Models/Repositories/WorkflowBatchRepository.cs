@@ -1,8 +1,9 @@
 ﻿using System.Data.Entity;
 using System.Linq;
+using WorkflowEngine.Designer.Models.Contracts;
 using WorkflowEngine.Model;
 
-namespace WorkflowEngine.Designer.Models
+namespace WorkflowEngine.Designer.Models.Repositories
 {
     public class WorkflowBatchRepository : Repository<WorkflowBatch>, IWorkflowBatchRepository
     {

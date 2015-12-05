@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using WorkflowEngine.Model;
 
-namespace WorkflowEngine.Designer.Models
+namespace WorkflowEngine.Designer.Models.Mapping
 {
-    public class WorkflowTaskMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<WorkflowTask>
+    public class WorkflowParameterMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<WorkflowParameter>
     {
-        public WorkflowTaskMap()
+        public WorkflowParameterMap()
         {
-            ToTable("WorkflowTask");
+            ToTable("WorkflowParameter");
 
             HasKey(p => new { p.ID });
 

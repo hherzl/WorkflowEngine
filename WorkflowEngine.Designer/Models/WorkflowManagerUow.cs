@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using WorkflowEngine.Designer.Models.Contracts;
+using WorkflowEngine.Designer.Models.Repositories;
 
 namespace WorkflowEngine.Designer.Models
 {

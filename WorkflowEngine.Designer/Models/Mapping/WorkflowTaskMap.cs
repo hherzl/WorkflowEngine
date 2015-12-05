@@ -1,19 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using WorkflowEngine.Model;
 
-namespace WorkflowEngine.Designer.Models
+namespace WorkflowEngine.Designer.Models.Mapping
 {
-    public class WorkflowMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Workflow>
+    public class WorkflowTaskMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<WorkflowTask>
     {
-        public WorkflowMap()
+        public WorkflowTaskMap()
         {
-            ToTable("Workflow");
+            ToTable("WorkflowTask");
 
             HasKey(p => new { p.ID });
 
             Property(p => p.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-
-            Ignore(p => p.ExpectedResults);
         }
     }
 }

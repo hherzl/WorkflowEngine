@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using WorkflowEngine.Designer.Models.Mapping;
 
 namespace WorkflowEngine.Designer.Models
 {
