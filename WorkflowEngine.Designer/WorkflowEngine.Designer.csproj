@@ -179,7 +179,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\DesignerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WorkflowConstantController.cs" />
     <Compile Include="Controllers\WorkflowController.cs" />
@@ -232,17 +231,14 @@
   <ItemGroup>
     <Content Include="app\api.js" />
     <Content Include="app\app.js" />
-    <Content Include="app\controllers\DesignerController.js" />
     <Content Include="app\controllers\HomeController.js" />
     <Content Include="app\controllers\WorkflowTaskController.js" />
     <Content Include="app\controllers\WorkflowBatchController.js" />
     <Content Include="app\controllers\WorkflowController.js" />
-    <Content Include="app\services\DesignerService.js" />
     <Content Include="app\services\WorkflowService.js" />
     <Content Include="app\services\WorkflowTaskService.js" />
     <Content Include="app\services\UnitOfWork.js" />
     <Content Include="app\services\WorkflowBatchService.js" />
-    <Content Include="app\views\designer\index.html" />
     <Content Include="app\views\home\index.html" />
     <Content Include="app\views\workflowBatch\create.html" />
     <Content Include="app\views\workflowBatch\details.html" />
