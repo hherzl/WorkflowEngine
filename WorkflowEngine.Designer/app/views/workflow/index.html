@@ -1,0 +1,14 @@
+﻿<h2>Workflows</h2>
+
+<button type="button" ng-click="vm.addWorkflow()">Add Workflow</button>
+
+<table>
+    <tr ng-repeat="workflow in vm.workflowResult.model">
+        <td>{{ workflow.name }}</td>
+        <td>{{ workflow.description }}</td>
+        <td>
+            <button type="button" ng-click="vm.details(workflow)">Details</button>
+            <button type="button" ng-click="vm.edit(workflow)">Edit</button>
+        </td>
+    </tr>
+</table>

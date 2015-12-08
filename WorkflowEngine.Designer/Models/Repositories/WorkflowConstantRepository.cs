@@ -5,17 +5,16 @@ using WorkflowEngine.Model;
 
 namespace WorkflowEngine.Designer.Models.Repositories
 {
-    public class WorkflowBatchRepository : Repository<WorkflowBatch>, IWorkflowBatchRepository
+    public class WorkflowConstantRepository : Repository<WorkflowConstant>, IWorkflowConstantRepository
     {
-        public WorkflowBatchRepository(DbContext dbContext)
+        public WorkflowConstantRepository(DbContext dbContext)
             : base(dbContext)
         {
         }
 
-        public override WorkflowBatch Get(WorkflowBatch entity)
+        public override WorkflowConstant Get(WorkflowConstant entity)
         {
             return DbSet
-                .Include(p => p.Workflows)
                 .FirstOrDefault(item => item.ID == entity.ID);
         }
     }

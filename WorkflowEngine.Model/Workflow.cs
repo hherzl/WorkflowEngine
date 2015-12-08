@@ -16,6 +16,8 @@ namespace WorkflowEngine.Model
 
         public String Description { get; set; }
 
+        public Int32? WorkflowBatchID { get; set; }
+
         private List<WorkflowTask> m_tasks;
         private List<WorkflowExpectedResult> m_expectedResults;
 

@@ -1,7 +1,9 @@
-﻿using WorkflowEngine.Designer.ViewModels;
+﻿using System.Runtime.Serialization;
+using WorkflowEngine.Designer.ViewModels;
 
 namespace WorkflowEngine.Designer.Responses
 {
+    [DataContract]
     public class WorkflowBatchSingleResponse : ViewModelResponse, ISingleViewModelResponse<WorkflowBatchViewModel>
     {
         public WorkflowBatchSingleResponse()
@@ -9,6 +11,7 @@ namespace WorkflowEngine.Designer.Responses
 
         }
 
+        [DataMember(Name = "model")]
         public WorkflowBatchViewModel Model { get; set; }
     }
 }

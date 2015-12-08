@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using WorkflowEngine.Designer.Models;
 using WorkflowEngine.Designer.Models.Contracts;
 using WorkflowEngine.Designer.Responses;
 using WorkflowEngine.Designer.Services;
@@ -12,11 +12,11 @@ using WorkflowEngine.Designer.ViewModels;
 
 namespace WorkflowEngine.Designer.Controllers
 {
-    public class WorkflowTaskController : ApiController
+    public class WorkflowConstantController : ApiController
     {
         protected IWorkflowManagerUow Uow;
 
-        public WorkflowTaskController(IUowService service)
+        public WorkflowConstantController(IUowService service)
         {
             Uow = service.GetWorkflowManagerUow();
         }
@@ -31,21 +31,21 @@ namespace WorkflowEngine.Designer.Controllers
             base.Dispose(disposing);
         }
 
-        // GET: api/Task
+        // GET: api/WorkflowConstant
         public async Task<HttpResponseMessage> Get()
         {
-            var response = new WorkflowTaskComposedResponse();
+            var response = new WorkflowConstantComposedResponse();
 
             try
             {
                 response.Model = await Task.Run(() =>
-                    {
-                        return Uow
-                            .WorkflowTaskRepository
-                            .GetAll()
-                            .Select(item => new WorkflowTaskViewModel(item))
-                            .ToList();
-                    });
+                {
+                    return Uow
+                        .WorkflowConstantRepository
+                        .GetAll()
+                        .Select(item => new WorkflowConstantViewModel(item))
+                        .ToList();
+                });
             }
             catch (Exception ex)
             {
@@ -56,23 +56,23 @@ namespace WorkflowEngine.Designer.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
-        // GET: api/Task/5
+        // GET: api/WorkflowConstant/5
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST: api/Task
+        // POST: api/WorkflowConstant
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT: api/Task/5
+        // PUT: api/WorkflowConstant/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE: api/Task/5
+        // DELETE: api/WorkflowConstant/5
         public void Delete(int id)
         {
         }

@@ -1,6 +1,29 @@
 ﻿<h2>Details</h2>
 
 <div>
-    <span>Name</span>
-    <div>{{ vm.workflowBatchResult.model.name }}</div>
+    Name
+    <span>{{ vm.workflowBatchResult.model.name }}</span>
 </div>
+
+<div>
+    Description
+    <span>{{ vm.workflowBatchResult.model.description }}</span>
+</div>
+
+<div>
+    <h3>Workflows</h3>
+
+    <button type="button" ng-click="vm.addWorkflow()">+</button>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        <tr ng-repeat="workflow in vm.workflowBatchResult.model.workflows">
+            <td>{{ workflow.name }}</td>
+            <td>{{ workflow.description }}</td>
+        </tr>
+    </table>
+</div>
+
+<button type="button" ng-click="vm.back()">Back</button>

@@ -16,6 +16,7 @@ namespace WorkflowEngine.Designer.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new WorkflowBatchMap());
+            modelBuilder.Configurations.Add(new WorkflowConstantMap());
             modelBuilder.Configurations.Add(new WorkflowMap());
             modelBuilder.Configurations.Add(new WorkflowTaskMap());
             modelBuilder.Configurations.Add(new WorkflowParameterMap());

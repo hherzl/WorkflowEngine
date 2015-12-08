@@ -181,6 +181,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\DesignerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\WorkflowConstantController.cs" />
     <Compile Include="Controllers\WorkflowController.cs" />
     <Compile Include="Controllers\WorkflowTaskController.cs" />
     <Compile Include="Controllers\WorkflowBatchController.cs" />
@@ -190,10 +191,13 @@
     <Compile Include="Models\Contracts\IRepository.cs" />
     <Compile Include="Models\Contracts\IUow.cs" />
     <Compile Include="Models\Contracts\IWorkflowBatchRepository.cs" />
+    <Compile Include="Models\Contracts\IWorkflowConstantRepository.cs" />
     <Compile Include="Models\Contracts\IWorkflowManagerUow.cs" />
     <Compile Include="Models\Contracts\IWorkflowRepository.cs" />
     <Compile Include="Models\Contracts\IWorkflowTaskRepository.cs" />
+    <Compile Include="Models\Mapping\WorkflowConstantMap.cs" />
     <Compile Include="Models\Repositories\Repository.cs" />
+    <Compile Include="Models\Repositories\WorkflowConstantRepository.cs" />
     <Compile Include="Models\Uow.cs" />
     <Compile Include="Models\Mapping\WorkflowBatchMap.cs" />
     <Compile Include="Models\Repositories\WorkflowBatchRepository.cs" />
@@ -212,6 +216,7 @@
     <Compile Include="Responses\IViewModelResponse.cs" />
     <Compile Include="Responses\WorkflowBatchSingleResponse.cs" />
     <Compile Include="Responses\WorkflowComposedResponse.cs" />
+    <Compile Include="Responses\WorkflowConstantComposedResponse.cs" />
     <Compile Include="Responses\WorkflowSingleResponse.cs" />
     <Compile Include="Responses\WorkflowTaskComposedResponse.cs" />
     <Compile Include="Responses\ViewModelResponse.cs" />
@@ -219,6 +224,7 @@
     <Compile Include="Services\IUowService.cs" />
     <Compile Include="Services\UowService.cs" />
     <Compile Include="ViewModels\DesignerViewModel.cs" />
+    <Compile Include="ViewModels\WorkflowConstantViewModel.cs" />
     <Compile Include="ViewModels\WorkflowTaskViewModel.cs" />
     <Compile Include="ViewModels\WorkflowBatchViewModel.cs" />
     <Compile Include="ViewModels\WorkflowViewModel.cs" />
@@ -240,9 +246,11 @@
     <Content Include="app\views\home\index.html" />
     <Content Include="app\views\workflowBatch\create.html" />
     <Content Include="app\views\workflowBatch\details.html" />
+    <Content Include="app\views\workflowBatch\edit.html" />
     <Content Include="app\views\workflowTask\index.html" />
     <Content Include="app\views\workflowBatch\index.html" />
     <Content Include="app\views\workflow\create.html" />
+    <Content Include="app\views\workflow\index.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

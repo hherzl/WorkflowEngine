@@ -17,11 +17,6 @@
                 controller: "HomeController",
                 controllerAs: "vm"
             })
-            .when("/designer", {
-                templateUrl: base + "designer/index.html",
-                controller: "DesignerController",
-                controllerAs: "vm"
-            })
             .when("/workflowBatch", {
                 templateUrl: base + "workflowBatch/index.html",
                 controller: "WorkflowBatchController",
@@ -37,14 +32,24 @@
                 controller: "WorkflowBatchDetailsController",
                 controllerAs: "vm"
             })
+            .when("/workflowBatch/edit/:id", {
+                templateUrl: base + "workflowBatch/edit.html",
+                controller: "WorkflowBatchEditController",
+                controllerAs: "vm"
+            })
+            .when("/workflow", {
+                templateUrl: base + "workflow/index.html",
+                controller: "WorkflowController",
+                controllerAs: "vm"
+            })
+            .when("/workflow/create/:id", {
+                templateUrl: base + "workflow/create.html",
+                controller: "WorkflowCreateController",
+                controllerAs: "vm"
+            })
             .when("/workflowTask", {
                 templateUrl: base + "workflowTask/index.html",
                 controller: "WorkflowTaskController",
-                controllerAs: "vm"
-            })
-            .when("/workflow/create", {
-                templateUrl: base + "workflow/create.html",
-                controller: "WorkflowCreateController",
                 controllerAs: "vm"
             });
     });

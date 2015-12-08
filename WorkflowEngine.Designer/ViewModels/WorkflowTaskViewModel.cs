@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using WorkflowEngine.Model;
 
 namespace WorkflowEngine.Designer.ViewModels
 {
@@ -9,6 +10,13 @@ namespace WorkflowEngine.Designer.ViewModels
         public WorkflowTaskViewModel()
         {
 
+        }
+
+        public WorkflowTaskViewModel(WorkflowTask entity)
+        {
+            ID = entity.ID;
+            Name = entity.Name;
+            Description = entity.Description;
         }
 
         [DataMember(Name = "id")]

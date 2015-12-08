@@ -9,6 +9,7 @@ namespace WorkflowEngine.Designer.Models
     public class WorkflowManagerUow : Uow, IWorkflowManagerUow
     {
         private IWorkflowBatchRepository m_workflowBatchRepository;
+        private IWorkflowConstantRepository m_workflowConstantRepository;
         private IWorkflowRepository m_workflowRepository;
         private IWorkflowTaskRepository m_workflowTaskRepository;
 
@@ -23,6 +24,14 @@ namespace WorkflowEngine.Designer.Models
             get
             {
                 return m_workflowBatchRepository ?? (m_workflowBatchRepository = new WorkflowBatchRepository(m_dbContext));
+            }
+        }
+
+        public IWorkflowConstantRepository WorkflowConstantRepository
+        {
+            get
+            {
+                return m_workflowConstantRepository ?? (m_workflowConstantRepository = new WorkflowConstantRepository(m_dbContext));
             }
         }
 

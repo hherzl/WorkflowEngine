@@ -4,6 +4,8 @@
     {
         IWorkflowBatchRepository WorkflowBatchRepository { get; }
 
+        IWorkflowConstantRepository WorkflowConstantRepository { get; }
+
         IWorkflowRepository WorkflowRepository { get; }
 
         IWorkflowTaskRepository WorkflowTaskRepository { get; }

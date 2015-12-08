@@ -12,6 +12,8 @@ namespace WorkflowEngine.Designer.Models.Mapping
             HasKey(p => new { p.ID });
 
             Property(p => p.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
+            Ignore(p => p.Parameters);
         }
     }
 }

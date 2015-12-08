@@ -4,10 +4,12 @@
     angular.module("designer").controller("WorkflowBatchController", WorkflowBatchController);
     angular.module("designer").controller("WorkflowBatchCreateController", WorkflowBatchCreateController);
     angular.module("designer").controller("WorkflowBatchDetailsController", WorkflowBatchDetailsController);
+    angular.module("designer").controller("WorkflowBatchEditController", WorkflowBatchEditController);
 
     WorkflowBatchController.$inject = ["$log", "$location", "UnitOfWork"];
     WorkflowBatchCreateController.$inject = ["$log", "$location", "toaster", "UnitOfWork"];
     WorkflowBatchDetailsController.$inject = ["$log", "$location", "$routeParams", "toaster", "UnitOfWork"];
+    WorkflowBatchEditController.$inject = ["$log", "$location", "$routeParams", "toaster", "UnitOfWork"];
 
     function WorkflowBatchController($log, $location, uow) {
         var vm = this;
@@ -24,6 +26,10 @@
 
         vm.details = function (workflowBatch) {
             $location.path("/workflowBatch/details/" + workflowBatch.id);
+        };
+
+        vm.edit = function (workflowBatch) {
+            $location.path("/workflowBatch/edit/" + workflowBatch.id);
         };
     };
 
@@ -49,14 +55,52 @@
     function WorkflowBatchDetailsController($log, $location, $routeParams, toaster, uow) {
         var vm = this;
 
-        var id = $routeParams.id;
+        vm.id = $routeParams.id;
 
         vm.workflowBatchResult = {};
 
-        uow.workflowBatchRepository.get(id).then(function (result) {
+        uow.workflowBatchRepository.get(vm.id).then(function (result) {
             vm.workflowBatchResult = result.data;
-
-            debugger;
         });
+
+        vm.back = function () {
+            $location.path("/workflowBatch");
+        };
+
+        vm.addWorkflow = function () {
+            $location.path("/workflow/create/" + vm.id);
+        };
+    };
+
+    function WorkflowBatchEditController($log, $location, $routeParams, toaster, uow) {
+        var vm = this;
+
+        vm.id = $routeParams.id;
+
+        vm.workflowBatchResult = {};
+
+        uow.workflowBatchRepository.get(vm.id).then(function (result) {
+            vm.workflowBatchResult = result.data;
+        });
+
+        vm.save = function () {
+            var entity = {
+                id: vm.id,
+                name: vm.workflowBatchResult.model.name,
+                description: vm.workflowBatchResult.model.description
+            };
+
+            uow.workflowBatchRepository.put(entity).then(function (result) {
+                if (!result.data.didError) {
+                    toaster.pop("success", "Workflow batch was updated successfully");
+
+                    $location.path("/workflowBatch");
+                }
+            });
+        };
+
+        vm.cancel = function () {
+            $location.path("/workflowBatch");
+        };
     };
 })();

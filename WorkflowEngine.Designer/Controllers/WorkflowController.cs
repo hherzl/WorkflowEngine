@@ -44,12 +44,7 @@ namespace WorkflowEngine.Designer.Controllers
                     return Uow
                         .WorkflowRepository
                         .GetAll()
-                        .Select(item => new WorkflowViewModel
-                        {
-                            ID = item.ID,
-                            Name = item.Name,
-                            Description = item.Description
-                        })
+                        .Select(item => new WorkflowViewModel(item))
                         .ToList();
                 });
             }
@@ -95,7 +90,8 @@ namespace WorkflowEngine.Designer.Controllers
                 var entity = new Workflow
                 {
                     Name = value.Name,
-                    Description = value.Description
+                    Description = value.Description,
+                    WorkflowBatchID = value.WorkflowBatchID
                 };
 
                 Uow.WorkflowRepository.Add(entity);

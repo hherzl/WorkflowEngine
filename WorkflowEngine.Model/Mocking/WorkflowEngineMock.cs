@@ -4,13 +4,62 @@ namespace WorkflowEngine.Model.Mocking
 {
     public static class WorkflowEngineMock
     {
+        public static IEnumerable<WorkflowConstant> GetConstants()
+        {
+            return new List<WorkflowConstant>()
+            {
+                new WorkflowConstant { Name = "CountryName", Value = "UK" }
+            };
+        }
+
+        public static IEnumerable<WorkflowBatch> GetBatches()
+        {
+            return new List<WorkflowBatch>()
+            {
+                new WorkflowBatch
+                {
+                    Name = "Store workflow",
+                    Description = "Orders actions"
+                },
+                new WorkflowBatch
+                {
+                    Name = "Customer common actions",
+                    Description = "Request customer's information"
+                }
+            };
+        }
+
+        public static IEnumerable<Workflow> GetWorkflows()
+        {
+            return new List<Workflow>()
+            {
+                new Workflow
+                {
+                    Name = "Register customer",
+                    Description = "Register new customer"
+                }
+            };
+        }
+
         public static IEnumerable<WorkflowTask> GetTasks()
         {
             return new List<WorkflowTask>()
             {
-                new WorkflowTask { Name = "Add customer's data", Description = "Add information for customer's fields" },
-                new WorkflowTask { Name = "Create order", Description = "Create order for customer" },
-                new WorkflowTask { Name = "Request recent orders", Description = "Request a list of recent orders" }
+                new WorkflowTask
+                {
+                    Name = "Add customer's data",
+                    Description = "Add information for customer's fields"
+                },
+                new WorkflowTask
+                {
+                    Name = "Create order",
+                    Description = "Create order for customer"
+                },
+                new WorkflowTask
+                {
+                    Name = "Request recent orders",
+                    Description = "Request a list of recent orders"
+                }
             };
         }
 

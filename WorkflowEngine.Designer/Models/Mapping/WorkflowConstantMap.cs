@@ -3,18 +3,15 @@ using WorkflowEngine.Model;
 
 namespace WorkflowEngine.Designer.Models.Mapping
 {
-    public class WorkflowBatchMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<WorkflowBatch>
+    public class WorkflowConstantMap : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<WorkflowConstant>
     {
-        public WorkflowBatchMap()
+        public WorkflowConstantMap()
         {
-            ToTable("WorkflowBatch");
+            ToTable("WorkflowConstant");
 
             HasKey(p => new { p.ID });
 
             Property(p => p.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-
-            Ignore(p => p.Constants);
-            Ignore(p => p.Variables);
         }
     }
 }

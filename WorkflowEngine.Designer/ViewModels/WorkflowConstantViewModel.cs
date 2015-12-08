@@ -5,18 +5,19 @@ using WorkflowEngine.Model;
 namespace WorkflowEngine.Designer.ViewModels
 {
     [DataContract]
-    public class WorkflowViewModel
+    public class WorkflowConstantViewModel
     {
-        public WorkflowViewModel()
+        public WorkflowConstantViewModel()
         {
 
         }
 
-        public WorkflowViewModel(Workflow entity)
+        public WorkflowConstantViewModel(WorkflowConstant entity)
         {
             ID = entity.ID;
             Name = entity.Name;
             Description = entity.Description;
+            Value = entity.Value;
         }
 
         [DataMember(Name = "id")]
@@ -28,7 +29,7 @@ namespace WorkflowEngine.Designer.ViewModels
         [DataMember(Name = "description")]
         public String Description { get; set; }
 
-        [DataMember(Name = "workflowBatchID")]
-        public Int32? WorkflowBatchID { get; set; }
+        [DataMember(Name = "value")]
+        public String Value { get; set; }
     }
 }

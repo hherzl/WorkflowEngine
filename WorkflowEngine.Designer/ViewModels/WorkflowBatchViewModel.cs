@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using WorkflowEngine.Model;
 
@@ -17,6 +18,16 @@ namespace WorkflowEngine.Designer.ViewModels
             ID = entity.ID;
             Name = entity.Name;
             Description = entity.Description;
+
+            if (entity.Workflows != null && entity.Workflows.Count > 0)
+            {
+                Workflows = new List<WorkflowViewModel>();
+
+                foreach (var item in entity.Workflows)
+                {
+                    Workflows.Add(new WorkflowViewModel(item));
+                }
+            }
         }
 
         [DataMember(Name = "id")]
@@ -27,5 +38,8 @@ namespace WorkflowEngine.Designer.ViewModels
 
         [DataMember(Name = "description")]
         public String Description { get; set; }
+
+        [DataMember(Name = "workflows")]
+        public List<WorkflowViewModel> Workflows { get; set; }
     }
 }

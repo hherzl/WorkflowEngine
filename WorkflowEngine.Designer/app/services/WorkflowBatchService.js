@@ -17,5 +17,10 @@
         svc.post = function (model) {
             return $http.post(url, model);
         };
+
+        svc.put = function (model) {
+            debugger;
+            return $http.put(url + "/" + model.id, model);
+        };
     };
 })();
