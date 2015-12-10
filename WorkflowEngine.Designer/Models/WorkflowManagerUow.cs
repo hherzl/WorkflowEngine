@@ -1,6 +1,4 @@
-﻿using System;
-using System.Data.Entity;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using WorkflowEngine.Designer.Models.Contracts;
 using WorkflowEngine.Designer.Models.Repositories;
 
@@ -16,14 +14,13 @@ namespace WorkflowEngine.Designer.Models
         public WorkflowManagerUow(DbContext dbContext)
             : base(dbContext)
         {
-
         }
 
         public IWorkflowBatchRepository WorkflowBatchRepository
         {
             get
             {
-                return m_workflowBatchRepository ?? (m_workflowBatchRepository = new WorkflowBatchRepository(m_dbContext));
+                return m_workflowBatchRepository ?? (m_workflowBatchRepository = new WorkflowBatchRepository(DbContext));
             }
         }
 
@@ -31,7 +28,7 @@ namespace WorkflowEngine.Designer.Models
         {
             get
             {
-                return m_workflowConstantRepository ?? (m_workflowConstantRepository = new WorkflowConstantRepository(m_dbContext));
+                return m_workflowConstantRepository ?? (m_workflowConstantRepository = new WorkflowConstantRepository(DbContext));
             }
         }
 
@@ -39,7 +36,7 @@ namespace WorkflowEngine.Designer.Models
         {
             get
             {
-                return m_workflowRepository ?? (m_workflowRepository = new WorkflowRepository(m_dbContext));
+                return m_workflowRepository ?? (m_workflowRepository = new WorkflowRepository(DbContext));
             }
         }
 
@@ -47,7 +44,7 @@ namespace WorkflowEngine.Designer.Models
         {
             get
             {
-                return m_workflowTaskRepository ?? (m_workflowTaskRepository = new WorkflowTaskRepository(m_dbContext));
+                return m_workflowTaskRepository ?? (m_workflowTaskRepository = new WorkflowTaskRepository(DbContext));
             }
         }
     }

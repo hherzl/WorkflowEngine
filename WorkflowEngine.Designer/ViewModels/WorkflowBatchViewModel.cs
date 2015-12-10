@@ -41,5 +41,10 @@ namespace WorkflowEngine.Designer.ViewModels
 
         [DataMember(Name = "workflows")]
         public List<WorkflowViewModel> Workflows { get; set; }
+
+        public WorkflowBatch ToEntity()
+        {
+            return new WorkflowBatch { ID = ID, Name = Name, Description = Description };
+        }
     }
 }

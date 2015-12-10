@@ -66,6 +66,7 @@ namespace WorkflowEngine.Designer.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IUowService>().To<UowService>();
+            kernel.Bind<IBusinessObjectService>().To<BusinessObjectService>();
         }        
     }
 }

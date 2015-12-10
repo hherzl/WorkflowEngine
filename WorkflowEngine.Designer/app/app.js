@@ -37,6 +37,11 @@
                 controller: "WorkflowBatchEditController",
                 controllerAs: "vm"
             })
+            .when("/workflowBatch/clone/:id", {
+                templateUrl: base + "workflowBatch/clone.html",
+                controller: "WorkflowBatchCloneController",
+                controllerAs: "vm"
+            })
             .when("/workflow", {
                 templateUrl: base + "workflow/index.html",
                 controller: "WorkflowController",

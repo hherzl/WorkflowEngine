@@ -4,7 +4,6 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using WorkflowEngine.Designer.Models;
 using WorkflowEngine.Designer.Models.Contracts;
 using WorkflowEngine.Designer.Responses;
 using WorkflowEngine.Designer.Services;
@@ -15,16 +14,16 @@ namespace WorkflowEngine.Designer.Controllers
 {
     public class WorkflowBatchController : ApiController
     {
-        protected IWorkflowManagerUow Uow;
+        protected IWorkflowBusinessObject BusinessObject;
 
-        public WorkflowBatchController(IUowService service)
+        public WorkflowBatchController(IBusinessObjectService service)
         {
-            Uow = service.GetWorkflowManagerUow();
+            BusinessObject = service.GetBusinessObject();
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Uow != null)
+            if (BusinessObject != null)
             {
 
             }
@@ -39,14 +38,9 @@ namespace WorkflowEngine.Designer.Controllers
 
             try
             {
-                response.Model = await Task.Run(() =>
-                {
-                    return Uow
-                        .WorkflowBatchRepository
-                        .GetAll()
-                        .Select(item => new WorkflowBatchViewModel(item))
-                        .ToList();
-                });
+                var list = await BusinessObject.GetWorkflowBatches();
+
+                response.Model = list.Select(item => new WorkflowBatchViewModel(item)).ToList();
             }
             catch (Exception ex)
             {
@@ -64,10 +58,7 @@ namespace WorkflowEngine.Designer.Controllers
 
             try
             {
-                var entity = await Task.Run(() =>
-                {
-                    return Uow.WorkflowBatchRepository.Get(new WorkflowBatch { ID = id });
-                });
+                var entity = await BusinessObject.GetWorkflowBatch(new WorkflowBatch { ID = id });
 
                 response.Model = new WorkflowBatchViewModel(entity);
             }
@@ -81,21 +72,15 @@ namespace WorkflowEngine.Designer.Controllers
         }
 
         // POST: api/WorkflowBatch
-        public async Task <HttpResponseMessage> Post([FromBody]WorkflowBatchViewModel value)
+        public async Task<HttpResponseMessage> Post([FromBody]WorkflowBatchViewModel value)
         {
             var response = new WorkflowBatchSingleResponse();
 
             try
             {
-                var entity = new WorkflowBatch
-                {
-                    Name = value.Name,
-                    Description = value.Description
-                };
+                var entity = value.ToEntity();
 
-                Uow.WorkflowBatchRepository.Add(entity);
-
-                await Uow.CommitChangesAsync();
+                await BusinessObject.AddWorkflowBatch(entity);
 
                 response.Model = new WorkflowBatchViewModel(entity);
             }
@@ -115,15 +100,12 @@ namespace WorkflowEngine.Designer.Controllers
 
             try
             {
-                var entity = await Task.Run(() =>
+                var entity = await BusinessObject.UpdateWorkflowBatch(id, value.ToEntity());
+
+                if (entity == null)
                 {
-                    return Uow.WorkflowBatchRepository.Get(new WorkflowBatch { ID = id });
-                });
-
-                entity.Name = value.Name;
-                entity.Description = value.Description;
-
-                await Uow.CommitChangesAsync();
+                    return Request.CreateResponse(HttpStatusCode.NotFound, response);
+                }
 
                 response.Model = new WorkflowBatchViewModel(entity);
             }
@@ -143,14 +125,29 @@ namespace WorkflowEngine.Designer.Controllers
 
             try
             {
-                var entity = await Task.Run(() =>
-                {
-                    return Uow.WorkflowBatchRepository.Get(new WorkflowBatch { ID = id });
-                });
+                var entity = await BusinessObject.DeleteWorkflowBatch(id, null);
 
-                Uow.WorkflowBatchRepository.Delete(entity);
+                response.Model = new WorkflowBatchViewModel(entity);
+            }
+            catch (Exception ex)
+            {
+                response.DidError = true;
+                response.ErrorMessage = ex.ToString();
+            }
 
-                await Uow.CommitChangesAsync();
+            return Request.CreateResponse(HttpStatusCode.OK, response);
+        }
+
+        // CLONE: api/WorkflowBatch/5
+        [Route("api/WorkflowBatch/Clone/{id}")]
+        [HttpGet]
+        public async Task<HttpResponseMessage> Clone(Int32 id)
+        {
+            var response = new WorkflowBatchSingleResponse();
+
+            try
+            {
+                var entity = await BusinessObject.CloneWorkflowBatch(id);
 
                 response.Model = new WorkflowBatchViewModel(entity);
             }

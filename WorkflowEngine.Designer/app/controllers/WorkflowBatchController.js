@@ -5,11 +5,13 @@
     angular.module("designer").controller("WorkflowBatchCreateController", WorkflowBatchCreateController);
     angular.module("designer").controller("WorkflowBatchDetailsController", WorkflowBatchDetailsController);
     angular.module("designer").controller("WorkflowBatchEditController", WorkflowBatchEditController);
+    angular.module("designer").controller("WorkflowBatchCloneController", WorkflowBatchCloneController);
 
     WorkflowBatchController.$inject = ["$log", "$location", "UnitOfWork"];
     WorkflowBatchCreateController.$inject = ["$log", "$location", "toaster", "UnitOfWork"];
     WorkflowBatchDetailsController.$inject = ["$log", "$location", "$routeParams", "toaster", "UnitOfWork"];
     WorkflowBatchEditController.$inject = ["$log", "$location", "$routeParams", "toaster", "UnitOfWork"];
+    WorkflowBatchCloneController.$inject = ["$log", "$location", "$routeParams", "toaster", "UnitOfWork"];
 
     function WorkflowBatchController($log, $location, uow) {
         var vm = this;
@@ -30,6 +32,10 @@
 
         vm.edit = function (workflowBatch) {
             $location.path("/workflowBatch/edit/" + workflowBatch.id);
+        };
+
+        vm.clone = function (workflowBatch) {
+            $location.path("/workflowBatch/clone/" + workflowBatch.id);
         };
     };
 
@@ -101,6 +107,26 @@
 
         vm.cancel = function () {
             $location.path("/workflowBatch");
+        };
+    };
+
+    function WorkflowBatchCloneController($log, $location, $routeParams, toaster, uow) {
+        var vm = this;
+
+        vm.id = $routeParams.id;
+
+        vm.workflowBatchResult = {};
+
+        uow.workflowBatchRepository.get(vm.id).then(function (result) {
+            vm.workflowBatchResult = result.data;
+        });
+
+        vm.back = function () {
+            $location.path("/workflowBatch");
+        };
+
+        vm.addWorkflow = function () {
+            $location.path("/workflow/create/" + vm.id);
         };
     };
 })();

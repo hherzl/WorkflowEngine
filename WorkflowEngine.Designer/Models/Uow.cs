@@ -6,11 +6,19 @@ namespace WorkflowEngine.Designer.Models
 {
     public class Uow
     {
-        protected DbContext m_dbContext;
+        private DbContext m_dbContext;
 
         public Uow(DbContext dbContext)
         {
             m_dbContext = dbContext;
+        }
+
+        public DbContext DbContext
+        {
+            get
+            {
+                return m_dbContext;
+            }
         }
 
         public Int32 CommitChanges()
