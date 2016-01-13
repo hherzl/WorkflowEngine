@@ -252,6 +252,7 @@
     <Content Include="app\views\workflowTask\index.html" />
     <Content Include="app\views\workflowBatch\index.html" />
     <Content Include="app\views\workflow\create.html" />
+    <Content Include="app\views\workflow\details.html" />
     <Content Include="app\views\workflow\index.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="favicon.ico" />

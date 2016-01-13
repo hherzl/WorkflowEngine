@@ -3,9 +3,11 @@
 
     angular.module("designer").controller("WorkflowCreateController", WorkflowCreateController);
     angular.module("designer").controller("WorkflowController", WorkflowController);
+    angular.module("designer").controller("WorkflowDetailsController", WorkflowDetailsController);
 
     WorkflowCreateController.$inject = ["$log", "$location", "$routeParams", "toaster", "UnitOfWork"];
     WorkflowController.$inject = ["$log", "$location", "UnitOfWork"];
+    WorkflowDetailsController.$inject = ["$log", "$location", "$routeParams", "UnitOfWork"];
 
     function WorkflowCreateController($log, $location, $routeParams, toaster, uow) {
         var vm = this;
@@ -52,6 +54,26 @@
 
         vm.edit = function (workflow) {
             $location.path("/workflow/edit/" + workflow.id);
+        };
+    };
+
+    function WorkflowDetailsController($log, $location, $routeParams, uow) {
+        var vm = this;
+
+        vm.id = $routeParams.id;
+
+        vm.workflowResult = {};
+
+        uow.workflowRepository.get(vm.id).then(function (result) {
+            vm.workflowResult = result.data;
+        });
+
+        vm.back = function () {
+            $location.path("/workflow");
+        };
+
+        vm.addWorkflow = function () {
+            $location.path("/workflow/create/" + vm.id);
         };
     };
 })();

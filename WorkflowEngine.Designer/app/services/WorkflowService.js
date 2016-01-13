@@ -10,8 +10,8 @@
 
         var url = "/api/Workflow";
 
-        svc.get = function () {
-            return $http.get(url);
+        svc.get = function (id) {
+            return $http.get(id ? url + "/" + id : url);
         };
 
         svc.post = function (model) {

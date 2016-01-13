@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 using WorkflowEngine.Designer.ViewModels;
 
 namespace WorkflowEngine.Designer.Responses
 {
+    [DataContract]
     public class WorkflowConstantComposedResponse : ViewModelResponse, IComposedViewModelResponse<WorkflowConstantViewModel>
     {
         public WorkflowConstantComposedResponse()
@@ -13,6 +12,7 @@ namespace WorkflowEngine.Designer.Responses
 
         }
 
+        [DataMember(Name = "model")]
         public IEnumerable<WorkflowConstantViewModel> Model { get; set; }
     }
 }

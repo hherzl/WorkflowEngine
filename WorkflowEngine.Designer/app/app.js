@@ -47,6 +47,11 @@
                 controller: "WorkflowController",
                 controllerAs: "vm"
             })
+            .when("/workflow/details/:id", {
+                templateUrl: base + "workflow/details.html",
+                controller: "WorkflowDetailsController",
+                controllerAs: "vm"
+            })
             .when("/workflow/create/:id", {
                 templateUrl: base + "workflow/create.html",
                 controller: "WorkflowCreateController",
