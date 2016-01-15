@@ -21,5 +21,9 @@
         svc.put = function (model) {
             return $http.put(url + "/" + model.id, model);
         };
+
+        svc.clone = function (id) {
+            return $http.get(url + "/Clone/" + id);
+        };
     };
 })();

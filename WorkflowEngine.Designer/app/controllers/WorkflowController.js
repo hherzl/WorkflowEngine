@@ -6,7 +6,7 @@
     angular.module("designer").controller("WorkflowDetailsController", WorkflowDetailsController);
 
     WorkflowCreateController.$inject = ["$log", "$location", "$routeParams", "toaster", "UnitOfWork"];
-    WorkflowController.$inject = ["$log", "$location", "UnitOfWork"];
+    WorkflowController.$inject = ["$log", "$location", "toaster", "UnitOfWork"];
     WorkflowDetailsController.$inject = ["$log", "$location", "$routeParams", "UnitOfWork"];
 
     function WorkflowCreateController($log, $location, $routeParams, toaster, uow) {
@@ -35,10 +35,12 @@
         };
     };
 
-    function WorkflowController($log, $location, uow) {
+    function WorkflowController($log, $location, toaster, uow) {
         var vm = this;
 
         vm.workflowResult = {};
+
+        toaster.pop("wait", "Loading workflows...");
 
         uow.workflowRepository.get().then(function (result) {
             vm.workflowResult = result.data;

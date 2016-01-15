@@ -7,16 +7,18 @@
     angular.module("designer").controller("WorkflowBatchEditController", WorkflowBatchEditController);
     angular.module("designer").controller("WorkflowBatchCloneController", WorkflowBatchCloneController);
 
-    WorkflowBatchController.$inject = ["$log", "$location", "UnitOfWork"];
+    WorkflowBatchController.$inject = ["$log", "$location", "toaster", "UnitOfWork"];
     WorkflowBatchCreateController.$inject = ["$log", "$location", "toaster", "UnitOfWork"];
     WorkflowBatchDetailsController.$inject = ["$log", "$location", "$routeParams", "toaster", "UnitOfWork"];
     WorkflowBatchEditController.$inject = ["$log", "$location", "$routeParams", "toaster", "UnitOfWork"];
     WorkflowBatchCloneController.$inject = ["$log", "$location", "$routeParams", "toaster", "UnitOfWork"];
 
-    function WorkflowBatchController($log, $location, uow) {
+    function WorkflowBatchController($log, $location, toaster, uow) {
         var vm = this;
 
         vm.workflowBatchResult = {};
+
+        toaster.pop("wait", "Loading workflow batches...");
 
         uow.workflowBatchRepository.get().then(function (result) {
             vm.workflowBatchResult = result.data;
@@ -121,12 +123,18 @@
             vm.workflowBatchResult = result.data;
         });
 
-        vm.back = function () {
-            $location.path("/workflowBatch");
+        vm.clone = function () {
+            uow.workflowBatchRepository.clone(vm.id).then(function (result) {
+                if (result.data.model.didError) {
+                    toaster.pop("info", "There was an error: " + result.model.errorMessage);
+                } else {
+                    $location.path("/workflowBatch/details/" + result. vm.id);
+                }
+            });
         };
 
-        vm.addWorkflow = function () {
-            $location.path("/workflow/create/" + vm.id);
+        vm.back = function () {
+            $location.path("/workflowBatch");
         };
     };
 })();

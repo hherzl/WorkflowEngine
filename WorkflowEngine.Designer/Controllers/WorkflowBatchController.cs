@@ -60,7 +60,14 @@ namespace WorkflowEngine.Designer.Controllers
             {
                 var entity = await BusinessObject.GetWorkflowBatch(new WorkflowBatch { ID = id });
 
-                response.Model = new WorkflowBatchViewModel(entity);
+                if (entity == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, response);
+                }
+                else
+                {
+                    response.Model = new WorkflowBatchViewModel(entity);
+                }
             }
             catch (Exception ex)
             {
