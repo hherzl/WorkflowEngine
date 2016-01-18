@@ -225,8 +225,6 @@
     <Compile Include="Responses\WorkflowBatchComposedResponse.cs" />
     <Compile Include="Services\BusinessObjectService.cs" />
     <Compile Include="Services\IBusinessObjectService.cs" />
-    <Compile Include="Services\IUowService.cs" />
-    <Compile Include="Services\UowService.cs" />
     <Compile Include="ViewModels\DesignerViewModel.cs" />
     <Compile Include="ViewModels\WorkflowConstantViewModel.cs" />
     <Compile Include="ViewModels\WorkflowTaskViewModel.cs" />

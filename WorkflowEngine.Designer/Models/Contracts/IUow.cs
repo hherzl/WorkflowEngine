@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace WorkflowEngine.Designer.Models.Contracts
 {
-    public interface IUow
+    public interface IUow : IDisposable
     {
         Int32 CommitChanges();
 

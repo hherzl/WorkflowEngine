@@ -2,6 +2,6 @@
 {
     public interface IBusinessObject
     {
-
+        void Release();
     }
 }

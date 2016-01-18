@@ -30,5 +30,10 @@ namespace WorkflowEngine.Designer.ViewModels
 
         [DataMember(Name = "workflowBatchID")]
         public Int32? WorkflowBatchID { get; set; }
+
+        public Workflow ToEntity()
+        {
+            return new Workflow { ID = ID, Name = Name, Description = Description, WorkflowBatchID = WorkflowBatchID };
+        }
     }
 }

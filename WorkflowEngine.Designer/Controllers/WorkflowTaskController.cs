@@ -14,18 +14,18 @@ namespace WorkflowEngine.Designer.Controllers
 {
     public class WorkflowTaskController : ApiController
     {
-        protected IWorkflowManagerUow Uow;
+        protected IWorkflowBusinessObject BusinessObject;
 
-        public WorkflowTaskController(IUowService service)
+        public WorkflowTaskController(IBusinessObjectService service)
         {
-            Uow = service.GetWorkflowManagerUow();
+            BusinessObject = service.GetBusinessObject();
         }
 
-        protected override void Dispose(bool disposing)
+        protected override void Dispose(Boolean disposing)
         {
-            if (Uow != null)
+            if (BusinessObject != null)
             {
-
+                BusinessObject.Release();
             }
 
             base.Dispose(disposing);
@@ -38,14 +38,9 @@ namespace WorkflowEngine.Designer.Controllers
 
             try
             {
-                response.Model = await Task.Run(() =>
-                    {
-                        return Uow
-                            .WorkflowTaskRepository
-                            .GetAll()
-                            .Select(item => new WorkflowTaskViewModel(item))
-                            .ToList();
-                    });
+                var list = await BusinessObject.GetWorkflowTasks();
+
+                response.Model = list.Select(item => new WorkflowTaskViewModel(item)).ToList();
             }
             catch (Exception ex)
             {

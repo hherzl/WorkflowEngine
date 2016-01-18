@@ -14,18 +14,18 @@ namespace WorkflowEngine.Designer.Controllers
 {
     public class WorkflowConstantController : ApiController
     {
-        protected IWorkflowManagerUow Uow;
+        protected IWorkflowBusinessObject BusinessObject;
 
-        public WorkflowConstantController(IUowService service)
+        public WorkflowConstantController(IBusinessObjectService service)
         {
-            Uow = service.GetWorkflowManagerUow();
+            BusinessObject = service.GetBusinessObject();
         }
 
-        protected override void Dispose(bool disposing)
+        protected override void Dispose(Boolean disposing)
         {
-            if (Uow != null)
+            if (BusinessObject != null)
             {
-
+                BusinessObject.Release();
             }
 
             base.Dispose(disposing);
@@ -38,14 +38,9 @@ namespace WorkflowEngine.Designer.Controllers
 
             try
             {
-                response.Model = await Task.Run(() =>
-                {
-                    return Uow
-                        .WorkflowConstantRepository
-                        .GetAll()
-                        .Select(item => new WorkflowConstantViewModel(item))
-                        .ToList();
-                });
+                var list = await BusinessObject.GetWorkflowConstants();
+
+                response.Model = list.Select(item => new WorkflowConstantViewModel(item)).ToList();
             }
             catch (Exception ex)
             {

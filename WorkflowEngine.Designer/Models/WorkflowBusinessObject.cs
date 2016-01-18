@@ -8,18 +8,26 @@ namespace WorkflowEngine.Designer.Models
 {
     public class WorkflowBusinessObject : IWorkflowBusinessObject
     {
-        private IWorkflowManagerUow m_uow;
+        private IWorkflowManagerUow Uow;
 
         public WorkflowBusinessObject(IWorkflowManagerUow uow)
         {
-            m_uow = uow;
+            Uow = uow;
+        }
+
+        public void Release()
+        {
+            if (Uow != null)
+            {
+                Uow.Dispose();
+            }
         }
 
         public async Task<IEnumerable<WorkflowBatch>> GetWorkflowBatches()
         {
             return await Task.Run(() =>
             {
-                return m_uow.WorkflowBatchRepository.GetAll();
+                return Uow.WorkflowBatchRepository.GetAll();
             });
         }
 
@@ -27,15 +35,15 @@ namespace WorkflowEngine.Designer.Models
         {
             return await Task.Run(() =>
             {
-                return m_uow.WorkflowBatchRepository.Get(new WorkflowBatch { ID = viewModel.ID });
+                return Uow.WorkflowBatchRepository.Get(new WorkflowBatch { ID = viewModel.ID });
             });
         }
 
         public async Task<WorkflowBatch> AddWorkflowBatch(WorkflowBatch entity)
         {
-            m_uow.WorkflowBatchRepository.Add(entity);
+            Uow.WorkflowBatchRepository.Add(entity);
 
-            await m_uow.CommitChangesAsync();
+            await Uow.CommitChangesAsync();
 
             return entity;
         }
@@ -49,7 +57,7 @@ namespace WorkflowEngine.Designer.Models
                 entity.Name = changes.Name;
                 entity.Description = changes.Description;
 
-                await m_uow.CommitChangesAsync();
+                await Uow.CommitChangesAsync();
             }
 
             return await Task.Run(() => { return entity; });
@@ -61,9 +69,9 @@ namespace WorkflowEngine.Designer.Models
 
             if (entity != null)
             {
-                m_uow.WorkflowBatchRepository.Delete(entity);
+                Uow.WorkflowBatchRepository.Delete(entity);
 
-                await m_uow.CommitChangesAsync();
+                await Uow.CommitChangesAsync();
             }
 
             return await Task.Run(() => { return entity; });
@@ -75,7 +83,7 @@ namespace WorkflowEngine.Designer.Models
 
             var batch = new WorkflowBatch();
 
-            using (var transaction = m_uow.DbContext.Database.BeginTransaction())
+            using (var transaction = Uow.DbContext.Database.BeginTransaction())
             {
                 try
                 {
@@ -91,7 +99,7 @@ namespace WorkflowEngine.Designer.Models
                             batch.Constants.Add(new WorkflowConstant { Name = item.Name, Description = item.Description, Value = item.Value });
                         }
 
-                        await m_uow.CommitChangesAsync();
+                        await Uow.CommitChangesAsync();
                     }
 
                     if (source.Workflows != null && source.Workflows.Count > 0)
@@ -101,7 +109,7 @@ namespace WorkflowEngine.Designer.Models
                             batch.Workflows.Add(new Workflow { Name = item.Name, Description = item.Description, WorkflowBatchID = batch.ID });
                         }
 
-                        await m_uow.CommitChangesAsync();
+                        await Uow.CommitChangesAsync();
                     }
 
                     transaction.Commit();
@@ -115,6 +123,62 @@ namespace WorkflowEngine.Designer.Models
             return await Task.Run(() =>
             {
                 return batch;
+            });
+        }
+
+        public async Task<IEnumerable<Workflow>> GetWorkflows()
+        {
+            return await Task.Run(() =>
+            {
+                return Uow.WorkflowRepository.GetAll();
+            });
+        }
+
+        public async Task<Workflow> GetWorkflow(Workflow entity)
+        {
+            return await Task.Run(() =>
+            {
+                return Uow.WorkflowRepository.Get(new Workflow { ID = entity.ID });
+            });
+        }
+
+        public async Task<Workflow> AddWorkflow(Workflow entity)
+        {
+            Uow.WorkflowRepository.Add(entity);
+
+            await Uow.CommitChangesAsync();
+
+            return entity;
+        }
+
+        public async Task<Workflow> UpdateWorkflow(Int32 id, Workflow changes)
+        {
+            var entity = await GetWorkflow(new Workflow { ID = id });
+
+            if (entity != null)
+            {
+                entity.Name = changes.Name;
+                entity.Description = changes.Description;
+
+                await Uow.CommitChangesAsync();
+            }
+
+            return await Task.Run(() => { return entity; });
+        }
+
+        public async Task<IEnumerable<WorkflowTask>> GetWorkflowTasks()
+        {
+            return await Task.Run(() =>
+            {
+                return Uow.WorkflowTaskRepository.GetAll();
+            });
+        }
+
+        public async Task<IEnumerable<WorkflowConstant>> GetWorkflowConstants()
+        {
+            return await Task.Run(() =>
+            {
+                return Uow.WorkflowConstantRepository.GetAll();
             });
         }
     }

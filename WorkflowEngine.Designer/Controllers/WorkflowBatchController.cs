@@ -21,11 +21,11 @@ namespace WorkflowEngine.Designer.Controllers
             BusinessObject = service.GetBusinessObject();
         }
 
-        protected override void Dispose(bool disposing)
+        protected override void Dispose(Boolean disposing)
         {
             if (BusinessObject != null)
             {
-
+                BusinessObject.Release();
             }
 
             base.Dispose(disposing);

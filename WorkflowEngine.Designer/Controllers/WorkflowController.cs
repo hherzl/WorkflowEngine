@@ -15,18 +15,18 @@ namespace WorkflowEngine.Designer.Controllers
 {
     public class WorkflowController : ApiController
     {
-        protected IWorkflowManagerUow Uow;
+        protected IWorkflowBusinessObject BusinessObject;
 
-        public WorkflowController(IUowService service)
+        public WorkflowController(IBusinessObjectService service)
         {
-            Uow = service.GetWorkflowManagerUow();
+            BusinessObject = service.GetBusinessObject();
         }
 
-        protected override void Dispose(bool disposing)
+        protected override void Dispose(Boolean disposing)
         {
-            if (Uow != null)
+            if (BusinessObject != null)
             {
-
+                BusinessObject.Release();
             }
 
             base.Dispose(disposing);
@@ -39,14 +39,9 @@ namespace WorkflowEngine.Designer.Controllers
 
             try
             {
-                response.Model = await Task.Run(() =>
-                {
-                    return Uow
-                        .WorkflowRepository
-                        .GetAll()
-                        .Select(item => new WorkflowViewModel(item))
-                        .ToList();
-                });
+                var list = await BusinessObject.GetWorkflows();
+
+                response.Model = list.Select(item => new WorkflowViewModel(item)).ToList();
             }
             catch (Exception ex)
             {
@@ -64,12 +59,16 @@ namespace WorkflowEngine.Designer.Controllers
 
             try
             {
-                var entity = await Task.Run(() =>
-                {
-                    return Uow.WorkflowRepository.Get(new Workflow { ID = id });
-                });
+                var entity = await BusinessObject.GetWorkflow(new Workflow { ID = id });
 
-                response.Model = new WorkflowViewModel(entity);
+                if (entity == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, response);
+                }
+                else
+                {
+                    response.Model = new WorkflowViewModel(entity);
+                }
             }
             catch (Exception ex)
             {
@@ -87,16 +86,9 @@ namespace WorkflowEngine.Designer.Controllers
 
             try
             {
-                var entity = new Workflow
-                {
-                    Name = value.Name,
-                    Description = value.Description,
-                    WorkflowBatchID = value.WorkflowBatchID
-                };
+                var entity = value.ToEntity();
 
-                Uow.WorkflowRepository.Add(entity);
-
-                await Uow.CommitChangesAsync();
+                await BusinessObject.AddWorkflow(entity);
 
                 response.Model = new WorkflowViewModel(entity);
             }
@@ -116,15 +108,12 @@ namespace WorkflowEngine.Designer.Controllers
 
             try
             {
-                var entity = await Task.Run(() =>
+                var entity = await BusinessObject.UpdateWorkflow(id, value.ToEntity());
+
+                if (entity == null)
                 {
-                    return Uow.WorkflowRepository.Get(new Workflow { ID = id });
-                });
-
-                entity.Name = value.Name;
-                entity.Description = value.Description;
-
-                await Uow.CommitChangesAsync();
+                    return Request.CreateResponse(HttpStatusCode.NotFound, response);
+                }
 
                 response.Model = new WorkflowViewModel(entity);
             }

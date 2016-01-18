@@ -18,5 +18,17 @@ namespace WorkflowEngine.Designer.Models.Contracts
         Task<WorkflowBatch> DeleteWorkflowBatch(Int32 id, WorkflowBatch changes);
 
         Task<WorkflowBatch> CloneWorkflowBatch(Int32 id);
+
+        Task<IEnumerable<Workflow>> GetWorkflows();
+
+        Task<Workflow> GetWorkflow(Workflow entity);
+
+        Task<Workflow> AddWorkflow(Workflow entity);
+
+        Task<Workflow> UpdateWorkflow(Int32 id, Workflow changes);
+
+        Task<IEnumerable<WorkflowTask>> GetWorkflowTasks();
+
+        Task<IEnumerable<WorkflowConstant>> GetWorkflowConstants();
     }
 }
