@@ -8,12 +8,20 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0" Margin="10" Text="{Binding Title}"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="10" Text="Select file"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding FileName}" IsReadOnly="true"/>
+        
+        <Button Grid.Row="1" Grid.Column="2" Content="..." Margin="5" Command="{Binding LoadFileCommand}"/>
     </Grid>
 </Window>
