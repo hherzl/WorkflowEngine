@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using Microsoft.Win32;
+using WorkflowEngine.Model.Execution;
 using WorkflowEngine.UI.Commands;
 
 namespace WorkflowEngine.UI.ViewModels
@@ -17,6 +18,7 @@ namespace WorkflowEngine.UI.ViewModels
 
         private String m_title;
         private String m_fileName;
+        private ExecutionSummary m_executionSummary;
 
         public String Title
         {
@@ -53,6 +55,26 @@ namespace WorkflowEngine.UI.ViewModels
                     if (PropertyChanged != null)
                     {
                         PropertyChanged(this, new PropertyChangedEventArgs("FileName"));
+                    }
+                }
+            }
+        }
+
+        public ExecutionSummary ExecutionSummary
+        {
+            get
+            {
+                return m_executionSummary;
+            }
+            set
+            {
+                if (m_executionSummary != null)
+                {
+                    m_executionSummary = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("ExecutionSummary"));
                     }
                 }
             }

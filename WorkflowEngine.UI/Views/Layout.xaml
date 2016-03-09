@@ -23,5 +23,11 @@
         <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding FileName}" IsReadOnly="true"/>
         
         <Button Grid.Row="1" Grid.Column="2" Content="..." Margin="5" Command="{Binding LoadFileCommand}"/>
+
+        <DataGrid Grid.Row="2" Grid.Column="1" Margin="10" Height="Auto" AutoGenerateColumns="False" ItemsSource="{Binding Path=ExecutionSummary.Results}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Workflow name" Width="250" Binding="{Binding WorkflowName}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
