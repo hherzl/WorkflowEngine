@@ -47,10 +47,6 @@ namespace WorkflowEngine.Model.Execution
             {
                 return Results.Count;
             }
-            set
-            {
-
-            }
         }
 
         public Int32 SuccessCount
@@ -58,10 +54,6 @@ namespace WorkflowEngine.Model.Execution
             get
             {
                 return Results.Where(item => item.Succeeded).Count();
-            }
-            set
-            {
-
             }
         }
 
@@ -71,10 +63,6 @@ namespace WorkflowEngine.Model.Execution
             {
                 return Results.Where(item => item.Failed).Count();
             }
-            set
-            {
-
-            }
         }
 
         public Int32 KnownIssueCount
@@ -82,10 +70,6 @@ namespace WorkflowEngine.Model.Execution
             get
             {
                 return Results.Where(item => item.KnownIssue).Count();
-            }
-            set
-            {
-
             }
         }
     }
