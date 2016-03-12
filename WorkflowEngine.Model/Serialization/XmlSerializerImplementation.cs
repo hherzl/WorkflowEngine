@@ -6,6 +6,11 @@ namespace WorkflowEngine.Model.Serialization
 {
     public class XmlSerializerImplementation : ISerializer
     {
+        public XmlSerializerImplementation()
+        {
+
+        }
+
         public String Serialize(Object obj)
         {
             XmlSerializer serializer = new XmlSerializer(obj.GetType());

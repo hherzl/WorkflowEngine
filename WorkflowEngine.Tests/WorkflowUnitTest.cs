@@ -34,7 +34,6 @@ namespace WorkflowEngine.Tests
 
             Console.WriteLine(xml);
 
-            // <?xml-stylesheet type='text/xsl" href="RegisterCustomer.Results.xsl" ?>
             File.WriteAllText(AppDirectory, xml);
         }
 

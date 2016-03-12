@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         DataContext="{DynamicResource LayoutVM}"
         Title="Layout"
-        Height="800"
-        Width="1000">
+        Height="500"
+        Width="1200">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -12,6 +12,9 @@
             <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -24,7 +27,9 @@
         
         <Button Grid.Row="1" Grid.Column="2" Content="..." Margin="5" Command="{Binding LoadFileCommand}"/>
 
-        <DataGrid Grid.Row="2" Grid.Column="1" Margin="10" Height="Auto" AutoGenerateColumns="False" ItemsSource="{Binding Path=ExecutionSummary.Results}">
+        <Button Grid.Row="2" Grid.Column="1" Content="Execute Workflows" Margin="5" Command="{Binding ExecuteCommand}" IsEnabled="{Binding HasFileName}" />
+
+        <DataGrid Grid.Row="3" Grid.Column="1" Margin="10" Height="Auto" AutoGenerateColumns="False" ItemsSource="{Binding Path=ExecutionSummary.Results}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Workflow name" Width="250" Binding="{Binding WorkflowName}"/>
                 <DataGridTextColumn Header="Executes tasks" Width="250" Binding="{Binding ExecutedTasks}"/>
@@ -34,4 +39,6 @@
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
+    
+    
 </Window>

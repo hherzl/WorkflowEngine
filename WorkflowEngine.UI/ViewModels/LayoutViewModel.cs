@@ -1,8 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using System.Windows.Input;
 using Microsoft.Win32;
+using WorkflowEngine.Model;
 using WorkflowEngine.Model.Execution;
+using WorkflowEngine.Model.Serialization;
 using WorkflowEngine.UI.Commands;
 
 namespace WorkflowEngine.UI.ViewModels
@@ -19,6 +22,7 @@ namespace WorkflowEngine.UI.ViewModels
         private String m_title;
         private String m_fileName;
         private ExecutionSummary m_executionSummary;
+        private String m_status;
 
         public String Title
         {
@@ -68,7 +72,7 @@ namespace WorkflowEngine.UI.ViewModels
             }
             set
             {
-                if (m_executionSummary != null)
+                if (m_executionSummary != value)
                 {
                     m_executionSummary = value;
 
@@ -80,13 +84,42 @@ namespace WorkflowEngine.UI.ViewModels
             }
         }
 
+        public String Status
+        {
+            get
+            {
+                return m_status;
+            }
+            set
+            {
+                if (m_status != value)
+                {
+                    m_status = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("Status"));
+                    }
+                }
+            }
+        }
+
         private ICommand m_loadFileCommand;
+        private ICommand m_executeCommand;
 
         public ICommand LoadFileCommand
         {
             get
             {
                 return m_loadFileCommand ?? (m_loadFileCommand = new ViewModelCommand(LoadFileAction, true));
+            }
+        }
+
+        public ICommand ExecuteCommand
+        {
+            get
+            {
+                return m_executeCommand ?? (m_executeCommand = new ViewModelCommand(ExecuteAction, true));
             }
         }
 
@@ -103,6 +136,24 @@ namespace WorkflowEngine.UI.ViewModels
             {
                 FileName = dialog.FileName;
             }
+        }
+
+        public void ExecuteAction()
+        {
+            if (String.IsNullOrEmpty(FileName))
+            {
+                return;
+            }
+
+            var serializer = new XmlSerializerImplementation() as ISerializer;
+
+            var content = File.ReadAllText(FileName);
+
+            var batch = serializer.Deserialize<WorkflowBatch>(content);
+
+            var runner = new WorkflowRunner(batch);
+
+            ExecutionSummary = runner.Execute();
         }
     }
 }

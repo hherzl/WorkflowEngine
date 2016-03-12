@@ -76,6 +76,25 @@ namespace WorkflowEngine.Model.Mocking
             {
                 new Workflow
                 {
+                    Name = "Authentication",
+                    Description = "Authenticate user against system",
+                    Tasks = new List<WorkflowTask>()
+                    {
+                        new WorkflowTask
+                        {
+                            Name = "Log In",
+                            Description = "User login",
+                            Parameters = new List<WorkflowParameter>()
+                            {
+                                new WorkflowParameter { Name = "UserName", Value = "JuanPerez" },
+                                new WorkflowParameter { Name = "Password", Value = "abcd2016" }
+                            }
+                        }
+                    }
+                },
+
+                new Workflow
+                {
                     Name = "Register customer",
                     Description = "Register new customer",
                     Tasks = new List<WorkflowTask>()

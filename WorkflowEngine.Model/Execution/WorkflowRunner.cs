@@ -49,6 +49,8 @@ namespace WorkflowEngine.Model.Execution
                     {
 
                     }
+
+                    System.Threading.Thread.Sleep(3000);
                 }
 
                 result.Succeeded = true;
