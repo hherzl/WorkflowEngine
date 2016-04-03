@@ -11,6 +11,14 @@ namespace WorkflowEngine.Model.Serialization
 
         }
 
+        public String FileExtension
+        {
+            get
+            {
+                return "xml";
+            }
+        }
+
         public String Serialize(Object obj)
         {
             XmlSerializer serializer = new XmlSerializer(obj.GetType());
@@ -23,11 +31,39 @@ namespace WorkflowEngine.Model.Serialization
             }
         }
 
+        public void SerializeTo(String path, Object obj)
+        {
+            XmlSerializer serializer = new XmlSerializer(obj.GetType());
+
+            String content = String.Empty;
+
+            using (StringWriter writer = new StringWriter())
+            {
+                serializer.Serialize(writer, obj);
+
+                content = writer.ToString();
+            }
+
+            File.WriteAllText(path, content);
+        }
+
         public T Deserialize<T>(String xml) where T : new()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(T));
 
             using (StringReader reader = new StringReader(xml))
+            {
+                return (T)serializer.Deserialize(reader);
+            }
+        }
+
+        public T DeserializeFrom<T>(String path) where T : new()
+        {
+            String content = File.ReadAllText(path);
+
+            XmlSerializer serializer = new XmlSerializer(typeof(T));
+
+            using (StringReader reader = new StringReader(content))
             {
                 return (T)serializer.Deserialize(reader);
             }

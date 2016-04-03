@@ -72,5 +72,20 @@
       </Tasks>
       <ExpectedResults />
     </Workflow>
+    <Workflow>
+      <ID xsi:nil="true" />
+      <Name>Logging off</Name>
+      <Description>Logging off user's session</Description>
+      <WorkflowBatchID xsi:nil="true" />
+      <Tasks>
+        <WorkflowTask>
+          <ID xsi:nil="true" />
+          <Name>Sign Out</Name>
+          <Description>Sign out</Description>
+          <Parameters />
+        </WorkflowTask>
+      </Tasks>
+      <ExpectedResults />
+    </Workflow>
   </Workflows>
 </WorkflowBatch>

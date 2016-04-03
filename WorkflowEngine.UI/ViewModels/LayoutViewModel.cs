@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Windows.Input;
 using Microsoft.Win32;
 using WorkflowEngine.Model;
@@ -12,9 +12,11 @@ namespace WorkflowEngine.UI.ViewModels
 {
     public class LayoutViewModel : INotifyPropertyChanged
     {
+        private ISerializer serializer;
+
         public LayoutViewModel()
         {
-
+            serializer = new XmlSerializerImplementation() as ISerializer;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -100,6 +102,30 @@ namespace WorkflowEngine.UI.ViewModels
                     {
                         PropertyChanged(this, new PropertyChangedEventArgs("Status"));
                     }
+
+                    System.Diagnostics.Debug.WriteLine("{0} - {1}", DateTime.Now, value);
+                }
+            }
+        }
+
+        private  List<ExecutionResult> m_results;
+
+        public List<ExecutionResult> Results
+        {
+            get
+            {
+                return m_results ?? (m_results = new List<ExecutionResult>());
+            }
+            set
+            {
+                if (m_results != value)
+                {
+                    m_results = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("Results"));
+                    }
                 }
             }
         }
@@ -111,7 +137,7 @@ namespace WorkflowEngine.UI.ViewModels
         {
             get
             {
-                return m_loadFileCommand ?? (m_loadFileCommand = new ViewModelCommand(LoadFileAction, true));
+                return m_loadFileCommand ?? (m_loadFileCommand = new ViewModelAsyncCommand(LoadFileAction, true));
             }
         }
 
@@ -119,7 +145,7 @@ namespace WorkflowEngine.UI.ViewModels
         {
             get
             {
-                return m_executeCommand ?? (m_executeCommand = new ViewModelCommand(ExecuteAction, true));
+                return m_executeCommand ?? (m_executeCommand = new ViewModelAsyncCommand(ExecuteAction, true));
             }
         }
 
@@ -127,7 +153,7 @@ namespace WorkflowEngine.UI.ViewModels
         {
             var dialog = new OpenFileDialog()
             {
-                DefaultExt = ".xml"
+                DefaultExt = String.Format(".{0}", serializer.FileExtension)
             };
 
             var result = dialog.ShowDialog();
@@ -145,13 +171,24 @@ namespace WorkflowEngine.UI.ViewModels
                 return;
             }
 
-            var serializer = new XmlSerializerImplementation() as ISerializer;
-
-            var content = File.ReadAllText(FileName);
-
-            var batch = serializer.Deserialize<WorkflowBatch>(content);
+            var batch = serializer.DeserializeFrom<WorkflowBatch>(FileName);
 
             var runner = new WorkflowRunner(batch);
+
+            runner.StartProcessWorkflow += (source, args) =>
+            {
+                Status = String.Format("Starting workflow: '{0}'", args.Workflow.Name);
+            };
+
+            runner.ProcessWorkflow += (source, args) =>
+            {
+                Status = String.Format("Processing workflow: '{0}'", args.Workflow.Name);
+            };
+
+            runner.EndProcessWorkflow += (source, args) =>
+            {
+                Status = String.Format("Ending workflow: '{0}'", args.Workflow.Name);
+            };
 
             ExecutionSummary = runner.Execute();
         }

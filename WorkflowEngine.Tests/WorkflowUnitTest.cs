@@ -10,17 +10,30 @@ namespace WorkflowEngine.Tests
     [TestClass]
     public class WorkflowUnitTest
     {
-        String AppDirectory
+        private ISerializer serializer;
+
+        public WorkflowUnitTest()
+        {
+
+        }
+
+        private String AppDirectory
         {
             get
             {
-                return String.Format(@"{0}\Xml\RegisterCustomer.xml", Environment.CurrentDirectory.Replace(@"\bin\Debug", String.Empty));
+                return String.Format(@"{0}\Xml\RegisterCustomer.{1}", Environment.CurrentDirectory.Replace(@"\bin\Debug", String.Empty), serializer.FileExtension);
             }
         }
 
-        String GetExecutionResultsPath(String fileName)
+        private String GetExecutionResultsPath(String fileName)
         {
             return String.Format(@"{0}\ExecutionResults\{1}", Environment.CurrentDirectory.Replace(@"\bin\Debug", String.Empty), fileName);
+        }
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            serializer = new XmlSerializerImplementation() as ISerializer;
         }
 
         [TestMethod]
@@ -28,13 +41,11 @@ namespace WorkflowEngine.Tests
         {
             var workflowBatch = WorkflowEngineMock.GetRegisterCustomerWorkflowBatch();
 
-            var serializer = new XmlSerializerImplementation() as ISerializer;
+            var serialized = serializer.Serialize(workflowBatch);
 
-            var xml = serializer.Serialize(workflowBatch);
+            Console.WriteLine(serialized);
 
-            Console.WriteLine(xml);
-
-            File.WriteAllText(AppDirectory, xml);
+            File.WriteAllText(AppDirectory, serialized);
         }
 
         [TestMethod]
@@ -46,13 +57,11 @@ namespace WorkflowEngine.Tests
 
             var executionSummary = runner.Execute();
 
-            var serializer = new XmlSerializerImplementation() as ISerializer;
+            var serialized = serializer.Serialize(executionSummary);
 
-            var xml = serializer.Serialize(executionSummary);
+            Console.WriteLine(serialized);
 
-            Console.WriteLine(xml);
-
-            File.WriteAllText(GetExecutionResultsPath(@"RegisterCustomer.Results.xml"), xml);
+            File.WriteAllText(GetExecutionResultsPath(String.Format("RegisterCustomer.Results.{0}", serializer.FileExtension)), serialized);
         }
     }
 }

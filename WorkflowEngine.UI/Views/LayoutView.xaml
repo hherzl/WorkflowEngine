@@ -1,4 +1,4 @@
-﻿<Window x:Class="WorkflowEngine.UI.Views.Layout"
+﻿<Window x:Class="WorkflowEngine.UI.Views.LayoutView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         DataContext="{DynamicResource LayoutVM}"
@@ -17,7 +17,6 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0" Margin="10" Text="{Binding Title}"/>
@@ -29,7 +28,7 @@
 
         <Button Grid.Row="2" Grid.Column="1" Content="Execute Workflows" Margin="5" Command="{Binding ExecuteCommand}" IsEnabled="{Binding HasFileName}" />
 
-        <DataGrid Grid.Row="3" Grid.Column="1" Margin="10" Height="Auto" AutoGenerateColumns="False" ItemsSource="{Binding Path=ExecutionSummary.Results}">
+        <DataGrid Grid.Row="3" Grid.Column="1" Margin="10" Height="Auto" AutoGenerateColumns="False" ItemsSource="{Binding Path=Results}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Workflow name" Width="250" Binding="{Binding WorkflowName}"/>
                 <DataGridTextColumn Header="Executes tasks" Width="250" Binding="{Binding ExecutedTasks}"/>
@@ -38,7 +37,8 @@
                 <DataGridTextColumn Header="KnownIssue" Width="100" Binding="{Binding KnownIssue}"/>
             </DataGrid.Columns>
         </DataGrid>
+
+        <TextBlock Grid.Row="4" Grid.ColumnSpan="4" Margin="10" Text="{Binding Status}"/>
     </Grid>
-    
     
 </Window>

@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="Execution\ExecutionResult.cs" />
     <Compile Include="Execution\ExecutionSummary.cs" />
+    <Compile Include="Execution\ProcessWorkflowEventArgs.cs" />
+    <Compile Include="Execution\Delegates.cs" />
     <Compile Include="Mocking\WorkflowEngineMock.cs" />
     <Compile Include="Validation\IWorkflowValidator.cs" />
     <Compile Include="Validation\WorkflowValidationMessageType.cs" />
@@ -49,7 +51,7 @@
     <Compile Include="Validation\WorkflowValidationMessage.cs" />
     <Compile Include="Validation\UndefinedConstantValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Security\Login.cs" />
+    <Compile Include="Security\LoginModel.cs" />
     <Compile Include="Serialization\ISerializer.cs" />
     <Compile Include="Serialization\XmlSerializerImplementation.cs" />
     <Compile Include="Workflow.cs" />

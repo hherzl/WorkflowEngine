@@ -17,6 +17,12 @@ namespace WorkflowEngine.Model.Execution
             };
         }
 
+        public event StartProcessWorkflow StartProcessWorkflow;
+
+        public event ProcessWorkflow ProcessWorkflow;
+
+        public event EndProcessWorkflow EndProcessWorkflow;
+
         public WorkflowBatch WorkflowBatch { get; protected set; }
 
         public List<IWorkflowValidator> Validators { get; set; }
@@ -35,11 +41,21 @@ namespace WorkflowEngine.Model.Execution
 
             foreach (var workflow in WorkflowBatch.Workflows)
             {
+                if (StartProcessWorkflow != null)
+                {
+                    StartProcessWorkflow(this, new ProcessWorkflowEventArgs(workflow));
+                }
+
                 var result = new ExecutionResult
                 {
                     WorkflowName = workflow.Name,
                     ExecutedTasks = new List<String>()
                 };
+
+                if (ProcessWorkflow != null)
+                {
+                    ProcessWorkflow(this, new ProcessWorkflowEventArgs(workflow));
+                }
 
                 foreach (var workflowTask in workflow.Tasks)
                 {
@@ -50,7 +66,12 @@ namespace WorkflowEngine.Model.Execution
 
                     }
 
-                    System.Threading.Thread.Sleep(3000);
+                    System.Threading.Thread.Sleep(5000);
+                }
+
+                if (EndProcessWorkflow != null)
+                {
+                    EndProcessWorkflow(this, new ProcessWorkflowEventArgs(workflow));
                 }
 
                 result.Succeeded = true;

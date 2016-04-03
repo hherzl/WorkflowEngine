@@ -8,6 +8,7 @@ namespace WorkflowEngine.Model.Mocking
         {
             return new List<WorkflowConstant>()
             {
+                new WorkflowConstant { Name = "CountryName", Value = "UK" },
                 new WorkflowConstant { Name = "CountryName", Value = "UK" }
             };
         }
@@ -110,6 +111,20 @@ namespace WorkflowEngine.Model.Mocking
                                 new WorkflowParameter { Name = "ContactTitle", Value = "Mr." },
                                 new WorkflowParameter { Name = "Country", Constant = "CountryName" },
                             }
+                        }
+                    }
+                },
+
+                new Workflow
+                {
+                    Name = "Logging off",
+                    Description = "Logging off user's session",
+                    Tasks = new List<WorkflowTask>()
+                    {
+                        new WorkflowTask
+                        {
+                            Name = "Sign Out",
+                            Description = "Sign out"
                         }
                     }
                 }

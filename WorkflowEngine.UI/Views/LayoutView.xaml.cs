@@ -17,9 +17,9 @@ namespace WorkflowEngine.UI.Views
     /// <summary>
     /// Interaction logic for Layout.xaml
     /// </summary>
-    public partial class Layout : Window
+    public partial class LayoutView : Window
     {
-        public Layout()
+        public LayoutView()
         {
             InitializeComponent();
         }
