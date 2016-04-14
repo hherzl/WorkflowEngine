@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
 using Microsoft.Win32;
@@ -21,9 +21,12 @@ namespace WorkflowEngine.UI.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        protected BackgroundWorker ExecutionWorker;
+
         private String m_title;
         private String m_fileName;
         private ExecutionSummary m_executionSummary;
+        private ObservableCollection<ExecutionResult> m_results;
         private String m_status;
 
         public String Title
@@ -102,30 +105,23 @@ namespace WorkflowEngine.UI.ViewModels
                     {
                         PropertyChanged(this, new PropertyChangedEventArgs("Status"));
                     }
-
-                    System.Diagnostics.Debug.WriteLine("{0} - {1}", DateTime.Now, value);
                 }
             }
         }
 
-        private  List<ExecutionResult> m_results;
-
-        public List<ExecutionResult> Results
+        public ObservableCollection<ExecutionResult> Results
         {
             get
             {
-                return m_results ?? (m_results = new List<ExecutionResult>());
+                return m_results ?? (m_results = new ObservableCollection<ExecutionResult>());
             }
             set
             {
-                if (m_results != value)
-                {
-                    m_results = value;
+                m_results = value;
 
-                    if (PropertyChanged != null)
-                    {
-                        PropertyChanged(this, new PropertyChangedEventArgs("Results"));
-                    }
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("Results"));
                 }
             }
         }
@@ -137,7 +133,7 @@ namespace WorkflowEngine.UI.ViewModels
         {
             get
             {
-                return m_loadFileCommand ?? (m_loadFileCommand = new ViewModelAsyncCommand(LoadFileAction, true));
+                return m_loadFileCommand ?? (m_loadFileCommand = new ViewModelCommand(LoadFileAction, true));
             }
         }
 
@@ -145,7 +141,7 @@ namespace WorkflowEngine.UI.ViewModels
         {
             get
             {
-                return m_executeCommand ?? (m_executeCommand = new ViewModelAsyncCommand(ExecuteAction, true));
+                return m_executeCommand ?? (m_executeCommand = new ViewModelCommand(ExecuteAction, true));
             }
         }
 
@@ -175,22 +171,42 @@ namespace WorkflowEngine.UI.ViewModels
 
             var runner = new WorkflowRunner(batch);
 
-            runner.StartProcessWorkflow += (source, args) =>
+            ExecutionSummary = new ExecutionSummary();
+
+            foreach (var item in runner.GetValidationMessages())
             {
-                Status = String.Format("Starting workflow: '{0}'", args.Workflow.Name);
+                ExecutionSummary.ValidationMessages.Add(item);
+            }
+
+            ExecutionWorker = new BackgroundWorker();
+
+            ExecutionWorker.DoWork += (sender, eventArgs) =>
+            {
+                runner.StartProcessWorkflow += (source, args) =>
+                {
+                    Status = String.Format("Starting workflow: '{0}'", args.Workflow.Name);
+                };
+
+                runner.ProcessWorkflow += (source, args) =>
+                {
+                    Status = String.Format("Processing workflow: '{0}'", args.Workflow.Name);
+                };
+
+                runner.EndProcessWorkflow += (source, args) =>
+                {
+                    Status = String.Format("Ending workflow: '{0}'", args.Workflow.Name);
+                };
+
+                foreach (var item in runner.ExecuteWorkflows())
+                {
+                    App.Current.Dispatcher.Invoke(() =>
+                    {
+                        Results.Add(item);
+                    });
+                }
             };
 
-            runner.ProcessWorkflow += (source, args) =>
-            {
-                Status = String.Format("Processing workflow: '{0}'", args.Workflow.Name);
-            };
-
-            runner.EndProcessWorkflow += (source, args) =>
-            {
-                Status = String.Format("Ending workflow: '{0}'", args.Workflow.Name);
-            };
-
-            ExecutionSummary = runner.Execute();
+            ExecutionWorker.RunWorkerAsync();
         }
     }
 }

@@ -16,6 +16,8 @@ namespace WorkflowEngine.Model
 
         public String Description { get; set; }
 
+        public Int32 Delay { get; set; }
+
         private List<WorkflowParameter> m_parameters;
 
         public List<WorkflowParameter> Parameters

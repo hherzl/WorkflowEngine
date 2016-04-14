@@ -28,7 +28,7 @@
 
         <Button Grid.Row="2" Grid.Column="1" Content="Execute Workflows" Margin="5" Command="{Binding ExecuteCommand}" IsEnabled="{Binding HasFileName}" />
 
-        <DataGrid Grid.Row="3" Grid.Column="1" Margin="10" Height="Auto" AutoGenerateColumns="False" ItemsSource="{Binding Path=Results}">
+        <DataGrid Grid.Row="3" Grid.Column="1" Margin="10" Height="300" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding Path=Results}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Workflow name" Width="250" Binding="{Binding WorkflowName}"/>
                 <DataGridTextColumn Header="Executes tasks" Width="250" Binding="{Binding ExecutedTasks}"/>
@@ -36,6 +36,15 @@
                 <DataGridTextColumn Header="Failed" Width="100" Binding="{Binding Failed}"/>
                 <DataGridTextColumn Header="KnownIssue" Width="100" Binding="{Binding KnownIssue}"/>
             </DataGrid.Columns>
+            <!--<DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{Binding Red}"/>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DataGrid.RowStyle>-->
         </DataGrid>
 
         <TextBlock Grid.Row="4" Grid.ColumnSpan="4" Margin="10" Text="{Binding Status}"/>

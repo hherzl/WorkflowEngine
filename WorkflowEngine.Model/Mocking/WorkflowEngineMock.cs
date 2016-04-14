@@ -89,7 +89,8 @@ namespace WorkflowEngine.Model.Mocking
                             {
                                 new WorkflowParameter { Name = "UserName", Value = "JuanPerez" },
                                 new WorkflowParameter { Name = "Password", Value = "abcd2016" }
-                            }
+                            },
+                            Delay = 3000
                         }
                     }
                 },
@@ -110,7 +111,8 @@ namespace WorkflowEngine.Model.Mocking
                                 new WorkflowParameter { Name = "ContactName", Value = "John Doe" },
                                 new WorkflowParameter { Name = "ContactTitle", Value = "Mr." },
                                 new WorkflowParameter { Name = "Country", Constant = "CountryName" },
-                            }
+                            },
+                            Delay = 5000
                         }
                     }
                 },
@@ -124,7 +126,8 @@ namespace WorkflowEngine.Model.Mocking
                         new WorkflowTask
                         {
                             Name = "Sign Out",
-                            Description = "Sign out"
+                            Description = "Sign out",
+                            Delay = 2000
                         }
                     }
                 }

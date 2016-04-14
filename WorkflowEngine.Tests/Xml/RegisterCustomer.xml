@@ -20,6 +20,7 @@
           <ID xsi:nil="true" />
           <Name>Log In</Name>
           <Description>User login</Description>
+          <Delay>3000</Delay>
           <Parameters>
             <WorkflowParameter>
               <ID xsi:nil="true" />
@@ -46,6 +47,7 @@
           <ID xsi:nil="true" />
           <Name>Add customer's data</Name>
           <Description>Add information for customer's fields</Description>
+          <Delay>5000</Delay>
           <Parameters>
             <WorkflowParameter>
               <ID xsi:nil="true" />
@@ -82,6 +84,7 @@
           <ID xsi:nil="true" />
           <Name>Sign Out</Name>
           <Description>Sign out</Description>
+          <Delay>2000</Delay>
           <Parameters />
         </WorkflowTask>
       </Tasks>
