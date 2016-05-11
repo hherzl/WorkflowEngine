@@ -18,6 +18,8 @@ namespace WorkflowEngine.Model
 
         public Int32 Delay { get; set; }
 
+        public DateTime StartDateTime { get; set; }
+
         private List<WorkflowParameter> m_parameters;
 
         public List<WorkflowParameter> Parameters

@@ -7,6 +7,9 @@ namespace WorkflowEngine
         [STAThread]
         public static void Main(String[] args)
         {
+            Console.WriteLine("Workflow Engine");
+            Console.WriteLine();
+
             var launchArguments = new LaunchArgument();
 
             foreach (var a in args)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WorkflowEngine.Model.Execution;
 using WorkflowEngine.Model.Mocking;
@@ -45,7 +46,7 @@ namespace WorkflowEngine.Tests
 
             Console.WriteLine(serialized);
 
-            File.WriteAllText(AppDirectory, serialized);
+            File.WriteAllText(AppDirectory, serialized, Encoding.UTF8);
         }
 
         [TestMethod]
@@ -61,7 +62,7 @@ namespace WorkflowEngine.Tests
 
             Console.WriteLine(serialized);
 
-            File.WriteAllText(GetExecutionResultsPath(String.Format("RegisterCustomer.Results.{0}", serializer.FileExtension)), serialized);
+            File.WriteAllText(GetExecutionResultsPath(String.Format("RegisterCustomer.Results.{0}", serializer.FileExtension)), serialized, Encoding.UTF8);
         }
     }
 }

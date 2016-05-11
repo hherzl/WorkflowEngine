@@ -39,6 +39,8 @@ namespace WorkflowEngine.Model.Validation
                         {
                             yield return new WorkflowValidationMessage
                             {
+                                WorkflowBatchName = workflowBatch.Name,
+                                WorkflowTaskName = task.Name,
                                 MessageType = WorkflowValidationMessageType.Warning,
                                 WorkflowName = workflow.Name,
                                 Message = String.Format("Constant with name: '{0}' doesn't have any reference in tasks' parameters", constant.Name)

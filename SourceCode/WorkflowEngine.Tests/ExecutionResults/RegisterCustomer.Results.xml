@@ -1,15 +1,19 @@
-<?xml version="1.0" encoding="utf-16"?>
+﻿<?xml version="1.0" encoding="utf-16"?>
 <ExecutionSummary xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ExecutionDateTime>2016-04-14T00:36:59.1332363-04:00</ExecutionDateTime>
+  <ExecutionDateTime>2016-05-08T15:59:42.8409196-04:00</ExecutionDateTime>
   <ValidationMessages>
     <WorkflowValidationMessage>
       <MessageType>Warning</MessageType>
+      <WorkflowBatchName>Register Customer</WorkflowBatchName>
       <WorkflowName>Authentication</WorkflowName>
+      <WorkflowTaskName>Log In</WorkflowTaskName>
       <Message>Constant with name: 'CountryName' doesn't have any reference in tasks' parameters</Message>
     </WorkflowValidationMessage>
     <WorkflowValidationMessage>
       <MessageType>Warning</MessageType>
+      <WorkflowBatchName>Register Customer</WorkflowBatchName>
       <WorkflowName>Logging off</WorkflowName>
+      <WorkflowTaskName>Sign Out</WorkflowTaskName>
       <Message>Constant with name: 'CountryName' doesn't have any reference in tasks' parameters</Message>
     </WorkflowValidationMessage>
   </ValidationMessages>

@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="utf-16"?>
+﻿<?xml version="1.0" encoding="utf-16"?>
 <WorkflowBatch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ID xsi:nil="true" />
+  <Name>Register Customer</Name>
   <Constants>
     <WorkflowConstant>
       <ID xsi:nil="true" />
@@ -21,6 +22,7 @@
           <Name>Log In</Name>
           <Description>User login</Description>
           <Delay>3000</Delay>
+          <StartDateTime>0001-01-01T00:00:00</StartDateTime>
           <Parameters>
             <WorkflowParameter>
               <ID xsi:nil="true" />
@@ -48,6 +50,7 @@
           <Name>Add customer's data</Name>
           <Description>Add information for customer's fields</Description>
           <Delay>5000</Delay>
+          <StartDateTime>0001-01-01T00:00:00</StartDateTime>
           <Parameters>
             <WorkflowParameter>
               <ID xsi:nil="true" />
@@ -85,6 +88,7 @@
           <Name>Sign Out</Name>
           <Description>Sign out</Description>
           <Delay>2000</Delay>
+          <StartDateTime>0001-01-01T00:00:00</StartDateTime>
           <Parameters />
         </WorkflowTask>
       </Tasks>

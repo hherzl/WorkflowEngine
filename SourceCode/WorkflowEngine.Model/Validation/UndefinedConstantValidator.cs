@@ -20,8 +20,10 @@ namespace WorkflowEngine.Model.Validation
                             {
                                 yield return new WorkflowValidationMessage
                                 {
+                                    WorkflowBatchName = workflowBatch.Name,
                                     MessageType = WorkflowValidationMessageType.Error,
                                     WorkflowName = workflow.Name,
+                                    WorkflowTaskName = task.Name,
                                     Message = String.Format("There is not a definition for constant with name: '{0}'", parameter.Constant)
                                 };
                             }

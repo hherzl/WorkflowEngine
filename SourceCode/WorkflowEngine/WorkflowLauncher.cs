@@ -28,31 +28,51 @@ namespace WorkflowEngine
 
                 var runner = new WorkflowRunner(batch);
 
+                Console.WriteLine("Validation messages");
+
+                foreach (var item in runner.GetValidationMessages())
+                {
+                    Console.WriteLine("Workflow batch: {0}", item.WorkflowBatchName);
+                    Console.WriteLine("Workflow name: {0}", item.WorkflowName);
+                    Console.WriteLine("Workflow task: {0}", item.WorkflowTaskName);
+                    Console.WriteLine("Type: {0}", item.MessageType);
+                    Console.WriteLine("Message: {0}", item.Message);
+                    Console.WriteLine();
+                }
+
+                Console.WriteLine("Workflow batch execution started at: '{0}'", DateTime.Now);
+                Console.WriteLine();
+
                 runner.StartProcessWorkflow += (source, a) =>
                 {
                     Console.WriteLine("Workflow: '{0}'", a.Workflow.Name);
-                    Console.WriteLine("Starting...");
+                    Console.WriteLine(" Starting at '{0}'", DateTime.Now);
                 };
 
                 runner.ProcessWorkflow += (source, a) =>
                 {
-                    Console.WriteLine("Processing...");
+                    Console.WriteLine(" Processing...");
                 };
 
                 runner.EndProcessWorkflow += (source, a) =>
                 {
-                    Console.WriteLine("Ending...");
+                    Console.WriteLine(" Ending at '{0}'", DateTime.Now);
                     Console.WriteLine();
                 };
 
                 var executionSummary = runner.Execute();
 
-                Console.WriteLine("Execution Summary");
-                Console.WriteLine("Executed: '{0}'", executionSummary.ExecutedCount);
-                Console.WriteLine("Success: '{0}'", executionSummary.SuccessCount);
-                Console.WriteLine("KnownIssue: '{0}'", executionSummary.KnownIssueCount);
-                Console.WriteLine("Failed: '{0}'", executionSummary.FailedCount);
+                Console.WriteLine("Workflow batch execution finished at: '{0}'", DateTime.Now);
                 Console.WriteLine();
+
+                Console.WriteLine("Execution Summary");
+                Console.WriteLine();
+
+                Console.WriteLine("Executed: {0}", executionSummary.ExecutedCount);
+                Console.WriteLine("Success: {0}", executionSummary.SuccessCount);
+                Console.WriteLine("KnownIssue: {0}", executionSummary.KnownIssueCount);
+                Console.WriteLine("Failed: {0}", executionSummary.FailedCount);
+                Console.WriteLine("Total: {0}", executionSummary.Results.Count);
 
                 if (!String.IsNullOrEmpty(args.OutputFile))
                 {
@@ -67,7 +87,7 @@ namespace WorkflowEngine
 
                 var viewModel = new LayoutViewModel();
 
-                var view = new LayoutView()
+                var view = new LayoutView
                 {
                     DataContext = viewModel
                 };

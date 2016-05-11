@@ -66,7 +66,10 @@ namespace WorkflowEngine.Model.Mocking
 
         public static WorkflowBatch GetRegisterCustomerWorkflowBatch()
         {
-            var workflowBatch = new WorkflowBatch();
+            var workflowBatch = new WorkflowBatch
+            {
+                Name = "Register Customer"
+            };
 
             workflowBatch.Constants = new List<WorkflowConstant>()
             {
