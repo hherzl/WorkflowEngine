@@ -15,15 +15,28 @@ WorkflowEngine.Model: workflow model
 
 WorkflowEngine.UI: wpf application
 
---------------------------------------
-Console application command line:
+---------------------------------------------------
+Console application command line examples:
 
-workflowengine /d:enterprise /u:jhon /p:123 /sf:C:\Temp\Workflows\RegisterCustomer.xml
+WorkflowEngine /d:enterprise /u:jhon /p:123 /sf:C:\Temp\Workflows\RegisterCustomer.xml
 
-workflowengine /d:enterprise /u:jhon /p:123 /sf:C:\Temp\Workflows
+WorkflowEngine /d:enterprise /u:jhon /p:123 /sf:C:\Temp\Workflows
 
-workflowengine /d:enterprise /u:jhon /p:123 /sf:C:\Temp\Workflows /od:C:\Temp\Results
+WorkflowEngine /d:enterprise /u:jhon /p:123 /sf:C:\Temp\Workflows /od:C:\Temp\Results
 
-workflowengine /ui
+WorkflowEngine /ui
 
-workflowengine /ui /d:Acme /u:Admin /p:12345
+WorkflowEngine /ui /d:Acme /u:Admin /p:12345
+
+------------------------------
+Command line arguments:
+
+/ui: UI
+/d: Domain
+/u: User
+/p: Password
+/sd: SourceDirectory
+/sf: SourceFile
+/od: OutputDirectory
+/of: OutputFile
+/off: OutputFileFormat
