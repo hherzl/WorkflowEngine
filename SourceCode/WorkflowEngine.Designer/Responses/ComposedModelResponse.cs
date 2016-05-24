@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace WorkflowEngine.Designer.Responses
 {
     [DataContract]
-    public class ViewModelResponse
+    public class ComposedModelResponse<TModel> : IComposedModelResponse<TModel>
     {
-        public ViewModelResponse()
+        public ComposedModelResponse()
         {
 
         }
@@ -19,5 +20,8 @@ namespace WorkflowEngine.Designer.Responses
 
         [DataMember(Name = "errorMessage")]
         public String ErrorMessage { get; set; }
+
+        [DataMember(Name = "model")]
+        public IEnumerable<TModel> Model { get; set; }
     }
 }

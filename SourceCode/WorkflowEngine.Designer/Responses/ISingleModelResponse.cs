@@ -1,6 +1,6 @@
 ﻿namespace WorkflowEngine.Designer.Responses
 {
-    public interface ISingleViewModelResponse<TModel> : IViewModelResponse
+    public interface ISingleModelResponse<TModel> : IModelResponse
     {
         TModel Model { get; set; }
     }

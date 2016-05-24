@@ -1,11 +1,11 @@
-﻿(function () {
+﻿(function (app) {
     "use strict";
 
-    angular.module("designer").controller("HomeController", HomeController);
+    app.controller("HomeController", HomeController);
 
     HomeController.$inject = ["$log"];
 
     function HomeController($log) {
         var vm = this;
     };
-})();
+})(angular.module("designer"));

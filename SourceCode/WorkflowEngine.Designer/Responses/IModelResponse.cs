@@ -2,7 +2,7 @@
 
 namespace WorkflowEngine.Designer.Responses
 {
-    public interface IViewModelResponse
+    public interface IModelResponse
     {
         String Message { get; set; }
 

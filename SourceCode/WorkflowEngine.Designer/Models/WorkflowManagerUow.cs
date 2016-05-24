@@ -7,7 +7,6 @@ namespace WorkflowEngine.Designer.Models
 {
     public class WorkflowManagerUow : Uow, IWorkflowManagerUow
     {
-        private Boolean Disposed;
         private IWorkflowBatchRepository m_workflowBatchRepository;
         private IWorkflowConstantRepository m_workflowConstantRepository;
         private IWorkflowRepository m_workflowRepository;
@@ -16,26 +15,6 @@ namespace WorkflowEngine.Designer.Models
         public WorkflowManagerUow(DbContext dbContext)
             : base(dbContext)
         {
-        }
-
-        protected virtual void Dispose(Boolean disposing)
-        {
-            if (!Disposed)
-            {
-                if (disposing)
-                {
-                    DbContext.Dispose();
-                }
-            }
-
-            Disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-
-            GC.SuppressFinalize(this);
         }
 
         public IWorkflowBatchRepository WorkflowBatchRepository

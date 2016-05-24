@@ -10,6 +10,11 @@ namespace WorkflowEngine.Model
 
         }
 
+        public WorkflowBatch(Int32? id)
+        {
+            ID = id;
+        }
+
         public Int32? ID { get; set; }
 
         public String Name { get; set; }

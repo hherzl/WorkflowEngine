@@ -1,7 +1,7 @@
-﻿(function () {
+﻿(function (app) {
     "use strict";
 
-    angular.module("designerApi").service("WorkflowService", WorkflowService);
+    app.service("WorkflowService", WorkflowService);
 
     WorkflowService.$inject = ["$log", "$http"];
 
@@ -18,4 +18,4 @@
             return $http.post(url, model);
         };
     };
-})();
+})(angular.module("designer"));

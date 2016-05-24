@@ -1,11 +1,11 @@
-﻿(function () {
+﻿(function (app) {
     "use strict";
 
-    angular.module("designer").controller("WorkflowBatchController", WorkflowBatchController);
-    angular.module("designer").controller("WorkflowBatchCreateController", WorkflowBatchCreateController);
-    angular.module("designer").controller("WorkflowBatchDetailsController", WorkflowBatchDetailsController);
-    angular.module("designer").controller("WorkflowBatchEditController", WorkflowBatchEditController);
-    angular.module("designer").controller("WorkflowBatchCloneController", WorkflowBatchCloneController);
+    app.controller("WorkflowBatchController", WorkflowBatchController);
+    app.controller("WorkflowBatchCreateController", WorkflowBatchCreateController);
+    app.controller("WorkflowBatchDetailsController", WorkflowBatchDetailsController);
+    app.controller("WorkflowBatchEditController", WorkflowBatchEditController);
+    app.controller("WorkflowBatchCloneController", WorkflowBatchCloneController);
 
     WorkflowBatchController.$inject = ["$log", "$location", "toaster", "UnitOfWork"];
     WorkflowBatchCreateController.$inject = ["$log", "$location", "toaster", "UnitOfWork"];
@@ -137,4 +137,4 @@
             $location.path("/workflowBatch");
         };
     };
-})();
+})(angular.module("designer"));

@@ -212,17 +212,12 @@
     <Compile Include="Models\Mapping\WorkflowTaskMap.cs" />
     <Compile Include="Models\Repositories\WorkflowTaskRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Responses\DesignerComposedResponse.cs" />
-    <Compile Include="Responses\IComposedViewModelResponse.cs" />
-    <Compile Include="Responses\ISingleViewModelResponse.cs" />
-    <Compile Include="Responses\IViewModelResponse.cs" />
-    <Compile Include="Responses\WorkflowBatchSingleResponse.cs" />
-    <Compile Include="Responses\WorkflowComposedResponse.cs" />
-    <Compile Include="Responses\WorkflowConstantComposedResponse.cs" />
-    <Compile Include="Responses\WorkflowSingleResponse.cs" />
-    <Compile Include="Responses\WorkflowTaskComposedResponse.cs" />
-    <Compile Include="Responses\ViewModelResponse.cs" />
-    <Compile Include="Responses\WorkflowBatchComposedResponse.cs" />
+    <Compile Include="Responses\SingleModelResponse.cs" />
+    <Compile Include="Responses\ComposedModelResponse.cs" />
+    <Compile Include="Responses\Extensions.cs" />
+    <Compile Include="Responses\IComposedModelResponse.cs" />
+    <Compile Include="Responses\ISingleModelResponse.cs" />
+    <Compile Include="Responses\IModelResponse.cs" />
     <Compile Include="Services\BusinessObjectService.cs" />
     <Compile Include="Services\IBusinessObjectService.cs" />
     <Compile Include="ViewModels\DesignerViewModel.cs" />
@@ -275,8 +270,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="bower.json" />
-    <Content Include="package.json" />
-    <Content Include="Gruntfile.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

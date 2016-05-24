@@ -1,7 +1,7 @@
-﻿(function () {
+﻿(function (app) {
     "use strict";
 
-    angular.module("designer").controller("WorkflowTaskController", WorkflowTaskController);
+    app.controller("WorkflowTaskController", WorkflowTaskController);
 
     WorkflowTaskController.$inject = ["$log", "$location"];
 
@@ -14,4 +14,4 @@
             $location.path("/workflow/create");
         };
     };
-})();
+})(angular.module("designer"));

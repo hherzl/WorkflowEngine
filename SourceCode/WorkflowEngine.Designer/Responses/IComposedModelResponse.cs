@@ -2,7 +2,7 @@
 
 namespace WorkflowEngine.Designer.Responses
 {
-    public interface IComposedViewModelResponse<TModel> : IViewModelResponse
+    public interface IComposedModelResponse<TModel> : IModelResponse
     {
         IEnumerable<TModel> Model { get; set; }
     }

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using WorkflowEngine.Designer.Models;
 using WorkflowEngine.Designer.Models.Contracts;
 using WorkflowEngine.Designer.Responses;
 using WorkflowEngine.Designer.Services;
@@ -34,11 +32,14 @@ namespace WorkflowEngine.Designer.Controllers
         // GET: api/Task
         public async Task<HttpResponseMessage> Get()
         {
-            var response = new WorkflowTaskComposedResponse();
+            var response = new ComposedModelResponse<WorkflowTaskViewModel>() as IComposedModelResponse<WorkflowTaskViewModel>;
 
             try
             {
-                var list = await BusinessObject.GetWorkflowTasks();
+                var list = await Task.Run(() =>
+                {
+                    return BusinessObject.GetWorkflowTasks();
+                });
 
                 response.Model = list.Select(item => new WorkflowTaskViewModel(item)).ToList();
             }
@@ -48,28 +49,7 @@ namespace WorkflowEngine.Designer.Controllers
                 response.ErrorMessage = ex.Message;
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, response);
-        }
-
-        // GET: api/Task/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/Task
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Task/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Task/5
-        public void Delete(int id)
-        {
+            return response.ToHttpResponse(Request);
         }
     }
 }

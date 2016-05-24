@@ -1,7 +1,7 @@
-﻿(function () {
+﻿(function (app) {
     "use strict";
 
-    angular.module("designerApi").service("UnitOfWork", UnitOfWork);
+    app.service("UnitOfWork", UnitOfWork);
 
     UnitOfWork.$inject = ["WorkflowBatchService", "WorkflowService"];
 
@@ -12,4 +12,4 @@
 
         svc.workflowRepository = workflowSvc;
     };
-})();
+})(angular.module("designer"));

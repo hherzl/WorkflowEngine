@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -34,11 +32,14 @@ namespace WorkflowEngine.Designer.Controllers
         // GET: api/WorkflowConstant
         public async Task<HttpResponseMessage> Get()
         {
-            var response = new WorkflowConstantComposedResponse();
+            var response = new ComposedModelResponse<WorkflowConstantViewModel>() as IComposedModelResponse<WorkflowConstantViewModel>;
 
             try
             {
-                var list = await BusinessObject.GetWorkflowConstants();
+                var list = await Task.Run(() =>
+                {
+                    return BusinessObject.GetWorkflowConstants();
+                });
 
                 response.Model = list.Select(item => new WorkflowConstantViewModel(item)).ToList();
             }
@@ -48,28 +49,7 @@ namespace WorkflowEngine.Designer.Controllers
                 response.ErrorMessage = ex.Message;
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, response);
-        }
-
-        // GET: api/WorkflowConstant/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/WorkflowConstant
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/WorkflowConstant/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/WorkflowConstant/5
-        public void Delete(int id)
-        {
+            return response.ToHttpResponse(Request);
         }
     }
 }

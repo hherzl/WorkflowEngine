@@ -4,31 +4,49 @@ using System.Threading.Tasks;
 
 namespace WorkflowEngine.Designer.Models
 {
-    public class Uow
+    public abstract class Uow
     {
-        private DbContext m_dbContext;
+        protected readonly DbContext DbContext;
+        protected Boolean Disposed;
 
         public Uow(DbContext dbContext)
         {
-            m_dbContext = dbContext;
+            DbContext = dbContext;
         }
 
-        public DbContext DbContext
+        protected virtual void Dispose(Boolean disposing)
         {
-            get
+            if (!Disposed)
             {
-                return m_dbContext;
+                if (disposing)
+                {
+                    DbContext.Dispose();
+                }
             }
+
+            Disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+
+            GC.SuppressFinalize(this);
+        }
+
+        public DbContextTransaction BeginTransaction()
+        {
+            return DbContext.Database.BeginTransaction();
         }
 
         public Int32 CommitChanges()
         {
-            return m_dbContext.SaveChanges();
+            return DbContext.SaveChanges();
         }
 
         public Task<Int32> CommitChangesAsync()
         {
-            return m_dbContext.SaveChangesAsync();
+            return DbContext.SaveChangesAsync();
         }
     }
 }

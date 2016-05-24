@@ -1,9 +1,9 @@
-﻿(function () {
+﻿(function (app) {
     "use strict";
 
-    angular.module("designer").controller("WorkflowCreateController", WorkflowCreateController);
-    angular.module("designer").controller("WorkflowController", WorkflowController);
-    angular.module("designer").controller("WorkflowDetailsController", WorkflowDetailsController);
+    app.controller("WorkflowCreateController", WorkflowCreateController);
+    app.controller("WorkflowController", WorkflowController);
+    app.controller("WorkflowDetailsController", WorkflowDetailsController);
 
     WorkflowCreateController.$inject = ["$log", "$location", "$routeParams", "toaster", "UnitOfWork"];
     WorkflowController.$inject = ["$log", "$location", "toaster", "UnitOfWork"];
@@ -78,4 +78,4 @@
             $location.path("/workflow/create/" + vm.id);
         };
     };
-})();
+})(angular.module("designer"));

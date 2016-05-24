@@ -1,7 +1,7 @@
-﻿(function () {
+﻿(function (app) {
     "use strict";
 
-    angular.module("designerApi").service("WorkflowBatchService", WorkflowBatchService);
+    app.service("WorkflowBatchService", WorkflowBatchService);
 
     WorkflowBatchService.$inject = ["$log", "$http"];
 
@@ -26,4 +26,4 @@
             return $http.get(url + "/Clone/" + id);
         };
     };
-})();
+})(angular.module("designer"));
