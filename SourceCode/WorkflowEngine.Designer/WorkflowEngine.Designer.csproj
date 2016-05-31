@@ -179,11 +179,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\DesignerController.WorkflowConstant.cs" />
+    <Compile Include="Controllers\DesignerController.WorkflowTask.cs" />
+    <Compile Include="Controllers\DesignerController.Workflow.cs" />
+    <Compile Include="Controllers\DesignerController.WorkflowBatch.cs" />
+    <Compile Include="Controllers\DesignerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\WorkflowConstantController.cs" />
-    <Compile Include="Controllers\WorkflowController.cs" />
-    <Compile Include="Controllers\WorkflowTaskController.cs" />
-    <Compile Include="Controllers\WorkflowBatchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -287,6 +288,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WorkflowEngine.Common\WorkflowEngine.Common.csproj">
+      <Project>{540dcfca-a06c-4e17-9f4b-d2213ab202b0}</Project>
+      <Name>WorkflowEngine.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WorkflowEngine.Model\WorkflowEngine.Model.csproj">
       <Project>{cdc5bbf5-6132-446d-a30d-71eb7db62a36}</Project>
       <Name>WorkflowEngine.Model</Name>

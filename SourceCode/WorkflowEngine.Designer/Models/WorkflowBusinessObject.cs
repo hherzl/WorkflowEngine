@@ -7,7 +7,7 @@ namespace WorkflowEngine.Designer.Models
 {
     public class WorkflowBusinessObject : IWorkflowBusinessObject
     {
-        private IWorkflowManagerUow Uow;
+        private readonly IWorkflowManagerUow Uow;
 
         public WorkflowBusinessObject(IWorkflowManagerUow uow)
         {

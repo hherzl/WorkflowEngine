@@ -1,11 +1,13 @@
 ﻿Usage:
 
-workflowengine /d:enterprise /u:hans /p:123 /sf:C:\Temp\Workflows\RegisterCustomer.xml
+WorkflowEngine.exe /d:enterprise /u:hans /p:123 /sf:C:\Temp\Workflows\RegisterCustomer.xml /of:C:\Temp\Results\WorkflowResults.xml
 
-workflowengine /d:enterprise /u:hans /p:123 /sf:C:\Temp\Workflows
+WorkflowEngine.exe /d:enterprise /u:hans /p:123 /sf:C:\Temp\Workflows\RegisterCustomer.xml
 
-workflowengine /d:enterprise /u:hans /p:123 /sf:C:\Temp\Workflows /od:C:\Temp\Results
+WorkflowEngine.exe /d:enterprise /u:hans /p:123 /sf:C:\Temp\Workflows
 
-workflowengine /ui
+WorkflowEngine.exe /d:enterprise /u:hans /p:123 /sf:C:\Temp\Workflows /od:C:\Temp\Results
 
-workflowengine /ui /d:Acme /u:Admin /p:12345
+WorkflowEngine.exe /ui
+
+WorkflowEngine.exe /ui /d:Acme /u:Admin /p:12345

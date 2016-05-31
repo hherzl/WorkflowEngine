@@ -1,13 +1,22 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WorkflowEngine.Designer.Services;
 
 namespace WorkflowEngine.Designer.Tests.Controllers
 {
     [TestClass]
-    public class DesignerControllerUnitTest
+    public partial class DesignerControllerUnitTest
     {
-        [TestMethod]
-        public void TestMethod1()
+        private IBusinessObjectService service;
+
+        [TestInitialize]
+        public void Init()
+        {
+            service = new BusinessObjectService();
+        }
+
+        [TestCleanup]
+        public void Dispose()
         {
 
         }

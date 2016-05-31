@@ -13,6 +13,8 @@ namespace WorkflowEngine.Designer.Models.Mapping
 
             Property(p => p.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
+            Ignore(p => p.StartDateTime);
+
             Ignore(p => p.Parameters);
         }
     }

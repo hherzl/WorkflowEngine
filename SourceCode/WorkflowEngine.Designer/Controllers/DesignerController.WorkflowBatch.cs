@@ -3,48 +3,28 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using WorkflowEngine.Designer.Models.Contracts;
 using WorkflowEngine.Designer.Responses;
-using WorkflowEngine.Designer.Services;
 using WorkflowEngine.Designer.ViewModels;
 using WorkflowEngine.Model;
 
 namespace WorkflowEngine.Designer.Controllers
 {
-    [RoutePrefix("api/WorkflowBatch")]
-    public class WorkflowBatchController : ApiController
+    public partial class DesignerController : ApiController
     {
-        protected IWorkflowBusinessObject BusinessObject;
-
-        public WorkflowBatchController(IBusinessObjectService service)
-        {
-            BusinessObject = service.GetBusinessObject();
-        }
-
-        protected override void Dispose(Boolean disposing)
-        {
-            if (BusinessObject != null)
-            {
-                BusinessObject.Release();
-            }
-
-            base.Dispose(disposing);
-        }
-
-        // GET: api/WorkflowBatch
+        // GET: api/Designer/WorkflowBatch
         [Route("WorkflowBatch")]
-        public async Task<HttpResponseMessage> Get()
+        public async Task<HttpResponseMessage> GetWorkflowBatches()
         {
             var response = new ComposedModelResponse<WorkflowBatchViewModel>() as IComposedModelResponse<WorkflowBatchViewModel>;
 
             try
             {
-                var list = await Task.Run(() =>
+                var model = await Task.Run(() =>
                 {
                     return BusinessObject.GetWorkflowBatches();
                 });
 
-                response.Model = list.Select(item => new WorkflowBatchViewModel(item)).ToList();
+                response.Model = model.Select(item => item.ToViewModel()).ToList();
             }
             catch (Exception ex)
             {
@@ -55,20 +35,20 @@ namespace WorkflowEngine.Designer.Controllers
             return response.ToHttpResponse(Request);
         }
 
-        // GET: api/WorkflowBatch/5
+        // GET: api/Designer/WorkflowBatch/5
         [Route("WorkflowBatch/{id}")]
-        public async Task<HttpResponseMessage> Get(Int32 id)
+        public async Task<HttpResponseMessage> GetWorkflowBatch(Int32 id)
         {
             var response = new SingleModelResponse<WorkflowBatchViewModel>() as ISingleModelResponse<WorkflowBatchViewModel>;
 
             try
             {
-                var entity = await Task.Run(() =>
+                var model = await Task.Run(() =>
                 {
                     return BusinessObject.GetWorkflowBatch(new WorkflowBatch(id));
                 });
 
-                response.Model = new WorkflowBatchViewModel(entity);
+                response.Model = model.ToViewModel();
             }
             catch (Exception ex)
             {
@@ -79,20 +59,20 @@ namespace WorkflowEngine.Designer.Controllers
             return response.ToHttpResponse(Request);
         }
 
-        // POST: api/WorkflowBatch
+        // POST: api/Designer/WorkflowBatch
         [Route("WorkflowBatch/{id}")]
-        public async Task<HttpResponseMessage> Post([FromBody]WorkflowBatchViewModel value)
+        public async Task<HttpResponseMessage> CreateWorkflowBatch([FromBody]WorkflowBatchViewModel value)
         {
             var response = new SingleModelResponse<WorkflowBatchViewModel>() as ISingleModelResponse<WorkflowBatchViewModel>;
 
             try
             {
-                var entity = await Task.Run(() =>
+                var model = await Task.Run(() =>
                 {
                     return BusinessObject.AddWorkflowBatch(value.ToEntity());
                 });
 
-                response.Model = new WorkflowBatchViewModel(entity);
+                response.Model = model.ToViewModel();
             }
             catch (Exception ex)
             {
@@ -103,20 +83,20 @@ namespace WorkflowEngine.Designer.Controllers
             return response.ToHttpResponse(Request);
         }
 
-        // PUT: api/WorkflowBatch/5
+        // PUT: api/Designer/WorkflowBatch/5
         [Route("WorkflowBatch/{id}")]
-        public async Task<HttpResponseMessage> Put(Int32 id, [FromBody]WorkflowBatchViewModel value)
+        public async Task<HttpResponseMessage> UpdateWorkflowBatch(Int32 id, [FromBody]WorkflowBatchViewModel value)
         {
             var response = new SingleModelResponse<WorkflowBatchViewModel>() as ISingleModelResponse<WorkflowBatchViewModel>;
 
             try
             {
-                var entity = await Task.Run(() =>
+                var model = await Task.Run(() =>
                 {
                     return BusinessObject.UpdateWorkflowBatch(id, value.ToEntity());
                 });
 
-                response.Model = new WorkflowBatchViewModel(entity);
+                response.Model = model.ToViewModel();
             }
             catch (Exception ex)
             {
@@ -127,7 +107,7 @@ namespace WorkflowEngine.Designer.Controllers
             return response.ToHttpResponse(Request);
         }
 
-        // DELETE: api/WorkflowBatch/5
+        // DELETE: api/Designer/WorkflowBatch/5
         [Route("WorkflowBatch/{id}")]
         public async Task<HttpResponseMessage> Delete(Int32 id)
         {
@@ -135,12 +115,12 @@ namespace WorkflowEngine.Designer.Controllers
 
             try
             {
-                var entity = await Task.Run(() =>
+                var model = await Task.Run(() =>
                 {
                     return BusinessObject.DeleteWorkflowBatch(id, null);
                 });
 
-                response.Model = new WorkflowBatchViewModel(entity);
+                response.Model = model.ToViewModel();
             }
             catch (Exception ex)
             {
@@ -151,8 +131,8 @@ namespace WorkflowEngine.Designer.Controllers
             return response.ToHttpResponse(Request);
         }
 
-        // CLONE: api/WorkflowBatch/5
-        [Route("api/WorkflowBatch/Clone/{id}")]
+        // CLONE: api/Designer/WorkflowBatch/5
+        [Route("WorkflowBatch/Clone/{id}")]
         [HttpGet]
         public async Task<HttpResponseMessage> Clone(Int32 id)
         {
@@ -160,12 +140,12 @@ namespace WorkflowEngine.Designer.Controllers
 
             try
             {
-                var entity = await Task.Run(() =>
+                var model = await Task.Run(() =>
                 {
                     return BusinessObject.CloneWorkflowBatch(id);
                 });
 
-                response.Model = new WorkflowBatchViewModel(entity);
+                response.Model = model.ToViewModel();
             }
             catch (Exception ex)
             {

@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{14486D
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowEngine.Common", "WorkflowEngine.Common\WorkflowEngine.Common.csproj", "{540DCFCA-A06C-4E17-9F4B-D2213AB202B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{22E615DA-1225-48E5-9ED0-B1D43972EE4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22E615DA-1225-48E5-9ED0-B1D43972EE4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22E615DA-1225-48E5-9ED0-B1D43972EE4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{540DCFCA-A06C-4E17-9F4B-D2213AB202B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{540DCFCA-A06C-4E17-9F4B-D2213AB202B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{540DCFCA-A06C-4E17-9F4B-D2213AB202B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{540DCFCA-A06C-4E17-9F4B-D2213AB202B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

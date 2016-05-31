@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using WorkflowEngine.Common;
 using WorkflowEngine.Model;
 
 namespace WorkflowEngine.Designer.ViewModels
@@ -11,23 +12,6 @@ namespace WorkflowEngine.Designer.ViewModels
         public WorkflowBatchViewModel()
         {
 
-        }
-
-        public WorkflowBatchViewModel(WorkflowBatch entity)
-        {
-            ID = entity.ID;
-            Name = entity.Name;
-            Description = entity.Description;
-
-            if (entity.Workflows != null && entity.Workflows.Count > 0)
-            {
-                Workflows = new List<WorkflowViewModel>();
-
-                foreach (var item in entity.Workflows)
-                {
-                    Workflows.Add(new WorkflowViewModel(item));
-                }
-            }
         }
 
         [DataMember(Name = "id")]
@@ -41,10 +25,18 @@ namespace WorkflowEngine.Designer.ViewModels
 
         [DataMember(Name = "workflows")]
         public List<WorkflowViewModel> Workflows { get; set; }
+    }
 
-        public WorkflowBatch ToEntity()
+    public static class WorkflowBatchMapper
+    {
+        public static WorkflowBatch ToEntity(this WorkflowBatchViewModel viewModel)
         {
-            return new WorkflowBatch { ID = ID, Name = Name, Description = Description };
+            return viewModel.Map<WorkflowBatchViewModel, WorkflowBatch>();
+        }
+
+        public static WorkflowBatchViewModel ToViewModel(this WorkflowBatch viewModel)
+        {
+            return viewModel.Map<WorkflowBatch, WorkflowBatchViewModel>();
         }
     }
 }

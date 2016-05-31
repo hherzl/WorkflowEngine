@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.Entity;
 using System.Threading.Tasks;
 
@@ -32,6 +33,11 @@ namespace WorkflowEngine.Designer.Models
             Dispose(true);
 
             GC.SuppressFinalize(this);
+        }
+
+        public DbContextTransaction BeginTransaction(IsolationLevel level)
+        {
+            return DbContext.Database.BeginTransaction(level);
         }
 
         public DbContextTransaction BeginTransaction()
