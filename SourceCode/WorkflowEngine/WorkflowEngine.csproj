@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LaunchArgument.cs" />
+    <Compile Include="LaunchArgumentDescriptor.cs" />
+    <Compile Include="LaunchArgumentReflector.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkflowLauncher.cs" />

@@ -14,41 +14,19 @@ namespace WorkflowEngine
 
             foreach (var a in args)
             {
-                if (a == "/ui")
+                if (a.StartsWith("/help"))
                 {
-                    launchArguments.UI = "ui";
+                    foreach (var help in LaunchArgumentReflector.GetHelp())
+                    {
+                        Console.WriteLine(help);
+                        Console.WriteLine();
+                    }
+
+                    break;
                 }
-                else if (a.StartsWith("/d:"))
+                else
                 {
-                    launchArguments.Domain = a.Substring(a.LastIndexOf(":") + 1);
-                }
-                else if (a.StartsWith("/u:"))
-                {
-                    launchArguments.User = a.Substring(a.LastIndexOf(":") + 1);
-                }
-                else if (a.StartsWith("/p:"))
-                {
-                    launchArguments.Password = a.Substring(a.LastIndexOf(":") + 1);
-                }
-                else if (a.StartsWith("/sd:"))
-                {
-                    launchArguments.SourceDirectory = a.Substring(a.LastIndexOf(":") + 1);
-                }
-                else if (a.StartsWith("/sf:"))
-                {
-                    launchArguments.SourceFile = a.Substring(a.LastIndexOf(":") + 1);
-                }
-                else if (a.StartsWith("/od:"))
-                {
-                    launchArguments.OutputDirectory = a.Substring(a.LastIndexOf(":") + 1);
-                }
-                else if (a.StartsWith("/of:"))
-                {
-                    launchArguments.OutputFile = a.Substring(a.LastIndexOf(":") + 1);
-                }
-                else if (a.StartsWith("/off:"))
-                {
-                    launchArguments.OutputFileFormat = a.Substring(a.LastIndexOf(":") + 1);
+                    LaunchArgumentReflector.Reflect(a, launchArguments);
                 }
             }
 
